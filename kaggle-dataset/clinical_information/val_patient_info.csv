@@ -1,0 +1,284 @@
+﻿case_id,Sex,Age,Tumor Location,Signal Intensity (T1),Signal Intensity (T1c),Signal Intensity (T2),Signal Intensity (T2-FLAIR)
+153,unknown,NaN,Right Temporal Lobe,hypointense,hyperintense,hyperintense,hyperintense
+2555,unknown,NaN,Left parieto-occipital junction,isointense,heterogeneous,hyperintense,hyperintense
+2393,unknown,NaN,Left frontal parasagittal,isointense,homogeneous,hyperintense,isointense
+2086,unknown,NaN,"Left Temporal Lobe, Left Occipital Lobe",hypointense,hyperintense,hyperintense,hyperintense
+2508,female,45,Left cranial fossa,isointense,hyperintense,isointense,hyperintense
+269,unknown,NaN,Right cranial fossa,isointense,hyperintense,isointense,hyperintense
+121,unknown,NaN,"Left Frontal Lobe, Left Parietal lobe, Falx cerebri",isointense,heterogeneous,heterogeneous,heterogeneous
+366,unknown,NaN,Left frontal falx cerebri,hypointense,hyperintense,hyperintense,heterogeneous
+437,unknown,NaN,Left cranial fossa,hypointense,homogeneous,hyperintense,hyperintense
+66,unknown,NaN,Left frontal top convexity,hypointense,unknown,hyperintense,heterogeneous
+110,unknown,NaN,Left frontal falx cerebri,hypointense,heterogeneous,heterogeneous,heterogeneous
+697,unknown,NaN,"Left parietal lobe, adjacent to falx cerebri",isointense,heterogeneous,isointense,heterogeneous
+706,unknown,NaN,Falx cerebri,isointense,hyperintense,isointense,hyperintense
+727,unknown,NaN,"Left Frontal Lobe, Left Parietal Lobe, Falx cerebri",isointense,hyperintense,heterogeneous,hyperintense
+59,female,56,Left upper midline,hypointense,hyperintense,hyperintense,hyperintense
+506,female,45,Left frontal convexity,hypointense,hyperintense,hyperintense,heterogeneous
+445,unknown,NaN,Right cerebellum,isointense,homogeneous,hyperintense,hyperintense
+2145,unknown,NaN,Left Sellar region,isointense,hyperintense,hyperintense,hyperintense
+381,unknown,NaN,Right Falx cerebri,isointense,heterogeneous,hyperintense,hyperintense
+466,unknown,NaN,Left Temporal Lobe,isointense,hyperintense,isointense,isointense
+711,unknown,NaN,"Left Frontal Lobe, Left Temporal Lobe, Left Parietal Lobe",hypointense,homogeneous,hyperintense,hyperintense
+2532,unknown,NaN,Left cerebellum,hypointense,homogeneous,hyperintense,hyperintense
+106,unknown,NaN,Left Frontal Lobe,isointense,heterogeneous,hyperintense,heterogeneous
+208,unknown,NaN,Left Frontal Lobe,isointense,hyperintense,hyperintense,hyperintense
+441,unknown,NaN,Right Frontal Lobe,isointense,hyperintense,isointense,hyperintense
+2090,unknown,NaN,"Right Frontal Lobe, Right Temporal Lobe, Right Parietal Lobe",hypointense,hyperintense,hyperintense,hyperintense
+263,unknown,NaN,Left Temporal Lobe,hypointense,heterogeneous,heterogeneous,heterogeneous
+512,unknown,NaN,"Left Frontal Lobe, Left Falx cerebri",isointense,hyperintense,heterogeneous,heterogeneous
+623,male,34,Left lateral ventricle,hyperintense,homogeneous,hyperintense,hyperintense
+617,female,55,Left paracallosal area near the top of the brain,isointense,heterogeneous,hyperintense,isointense
+2075,unknown,NaN,Left Frontal Lobe,isointense,hyperintense,hyperintense,hyperintense
+145,unknown,NaN,Right Frontal Lobe,isointense,hyperintense,hyperintense,isointense
+2143,unknown,NaN,Right Sellar region,isointense,homogeneous,isointense,hyperintense
+234,unknown,NaN,"Left Parietal Lobe, Left Frontal Lobe",heterogeneous,hyperintense,heterogeneous,heterogeneous
+2161,female,38,Right frontal region,hypointense,heterogeneous,hyperintense,heterogeneous
+723,unknown,NaN,Left Temporal Lobe,hypointense,hyperintense,isointense,isointense
+2569,unknown,NaN,Left Frontal Lobe,isointense,heterogeneous,isointense,isointense
+258,unknown,NaN,"Right Frontal Lobe, Falx cerebri",isointense,homogeneous,isointense,hyperintense
+555,female,60,Top left,isointense,hyperintense,heterogeneous,heterogeneous
+2114,unknown,NaN,Right cerebellopontine angle,hypointense,homogeneous,hyperintense,hyperintense
+357,male,59,Left parietal bone inner table,unknown,heterogeneous,hyperintense,heterogeneous
+2455,unknown,NaN,"Left Occipital Lobe, Temporal Lobe, Frontal Lobe, Falx cerebri, Right cranial fossa",isointense,homogeneous,isointense,isointense
+76,unknown,NaN,Left Frontal Lobe,isointense,heterogeneous,isointense,hyperintense
+2457,unknown,NaN,Right Falx cerebri,hypointense,hyperintense,isointense,isointense
+64,unknown,NaN,"Left Frontal Lobe, Left Parietal Lobe",isointense,heterogeneous,isointense,isointense
+682,unknown,NaN,Right Frontal Lobe,isointense,hyperintense,isointense,isointense
+1852,unknown,NaN,Sella region,isointense,unknown,hyperintense,heterogeneous
+79,unknown,NaN,Right frontal lobe,isointense,homogeneous,isointense,isointense
+10,unknown,NaN,Left temporal lobe,isointense,homogeneous,isointense,heterogeneous
+240,unknown,NaN,Right cranial fossa,hypointense,homogeneous,hyperintense,hyperintense
+2537,unknown,NaN,Left cranial fossa,isointense,homogeneous,hyperintense,hyperintense
+250,unknown,NaN,Left Parietal lobe,isointense,hyperintense,isointense,hyperintense
+599,female,72,"Left parasellar, left internal auditory canal, left brainstem",isointense,homogeneous,hyperintense,heterogeneous
+635,female,53,Left occipital region,isointense,homogeneous,hyperintense,isointense
+24,female,65,Left parietal lobe,isointense,heterogeneous,heterogeneous,heterogeneous
+365,female,50,Left frontal region,isointense,homogeneous,isointense,isointense
+2406,unknown,NaN,Left cerebellum,hypointense,heterogeneous,isointense,hyperintense
+245,unknown,NaN,Left parieto-occipital region near falx cerebri,isointense,homogeneous,hyperintense,heterogeneous
+268,unknown,NaN,"Right Frontal Lobe, Falx cerebri, cranial fossa",hypointense,hyperintense,hyperintense,hyperintense
+133,unknown,NaN,Right cerebellum,isointense,hyperintense,hyperintense,hyperintense
+490,female,49,Left temporal region,isointense,homogeneous,isointense,isointense
+558,unknown,NaN,"Left Frontal Lobe, Falx cerebri",hypointense,heterogeneous,hyperintense,hyperintense
+473,unknown,NaN,Left Frontal Lobe,hypointense,heterogeneous,heterogeneous,hyperintense
+2366,unknown,NaN,Left Parietal Lobe,isointense,hyperintense,hyperintense,hyperintense
+702,unknown,NaN,Left cerebellum,isointense,unknown,hyperintense,hyperintense
+725,unknown,NaN,"Left Frontal Lobe, Left Parietal Lobe, Falx cerebri",isointense,hyperintense,heterogeneous,hyperintense
+2425,unknown,NaN,Falx cerebri,hypointense,hyperintense,hyperintense,hyperintense
+338,unknown,NaN,Right Falx cerebri,isointense,homogeneous,isointense,hyperintense
+2065,male,69,Left cranial fossa,isointense,homogeneous,isointense,hyperintense
+220,unknown,NaN,Left Falx cerebri,isointense,hyperintense,isointense,isointense
+746,unknown,NaN,Left Frontal Lobe,isointense,heterogeneous,hyperintense,hyperintense
+2524,unknown,NaN,Right Frontal Lobe,isointense,hyperintense,isointense,hyperintense
+2418,unknown,NaN,Right Temporal Lobe,isointense,homogeneous,isointense,hyperintense
+2363,unknown,NaN,Right lateral ventricle,isointense,heterogeneous,hyperintense,hyperintense
+2449,male,66,Left frontal region,isointense,unknown,isointense,isointense
+458,unknown,NaN,Right Temporal Lobe,isointense,heterogeneous,hyperintense,hyperintense
+655,unknown,NaN,Left parietal lobe,isointense,hyperintense,isointense,isointense
+569,unknown,NaN,Left Frontal Lobe,isointense,hyperintense,isointense,hyperintense
+2436,unknown,NaN,Left frontal lobe,isointense,heterogeneous,isointense,hyperintense
+179,unknown,NaN,Left cranial fossa,isointense,hyperintense,isointense,isointense
+594,unknown,NaN,"Left Parietal lobe, Left Occipital lobe",isointense,heterogeneous,heterogeneous,heterogeneous
+514,unknown,NaN,cranial fossa,isointense,homogeneous,isointense,hyperintense
+712,female,48,"right frontal lobe, right temporal lobe, right parietal lobe, right occipital lobe",hypointense,homogeneous,hyperintense,hyperintense
+141,unknown,NaN,Left cerebellum,isointense,hyperintense,hyperintense,hyperintense
+138,unknown,NaN,"Left Frontal Lobe, Left Temporal Lobe",isointense,heterogeneous,isointense,hyperintense
+2123,unknown,NaN,"Right Temporal Lobe, Right Occipital Lobe",isointense,homogeneous,hyperintense,hyperintense
+574,unknown,NaN,Left Frontal Lobe,hypointense,homogeneous,isointense,isointense
+2117,unknown,NaN,Left spheno-temporal region,isointense,hyperintense,hyperintense,heterogeneous
+77,unknown,NaN,Left Frontal Lobe,isointense,heterogeneous,isointense,hyperintense
+526,unknown,NaN,Left Temporal Lobe,hypointense,hyperintense,hyperintense,hyperintense
+2084,unknown,NaN,"Right Frontal Lobe, Right Temporal Lobe",hypointense,hyperintense,isointense,hyperintense
+95,male,52,Right side of the ring pool,isointense,homogeneous,isointense,isointense
+2518,unknown,NaN,"Left Frontal Lobe, Left Temporal Lobe",hypointense,homogeneous,hyperintense,hyperintense
+2448,male,66,Left frontal region,isointense,unknown,isointense,isointense
+261,unknown,NaN,Left Parietal lobe,hypointense,heterogeneous,isointense,hyperintense
+63,unknown,NaN,Left Frontal Lobe,hypointense,heterogeneous,hyperintense,hyperintense
+260,unknown,NaN,Left Parietal lobe,hypointense,heterogeneous,isointense,hyperintense
+333,unknown,NaN,Left Frontal Lobe,isointense,hyperintense,hyperintense,hyperintense
+396,female,53,Right frontal-temporal region,hypointense,heterogeneous,hyperintense,hyperintense
+2558,unknown,NaN,Left cerebellum,isointense,hyperintense,isointense,isointense
+22,female,69,Right frontal-parietal junction,hypointense,homogeneous,hyperintense,hyperintense
+529,unknown,NaN,Parietal lobe,hypointense,hyperintense,hyperintense,hyperintense
+350,unknown,NaN,"Left Parietal lobe, Left Frontal Lobe, Falx cerebri",hypointense,hyperintense,hyperintense,hyperintense
+647,unknown,NaN,Left cranial fossa,isointense,heterogeneous,isointense,hyperintense
+2915,unknown,NaN,Right parietal lobe,hypointense,unknown,hypointense,heterogeneous
+2313,unknown,NaN,Right frontal-parietal junction,unknown,unknown,unknown,heterogeneous
+1825,unknown,NaN,Left occipital lobe,hypointense,heterogeneous,hyperintense,heterogeneous
+1759,unknown,NaN,Left frontal lobe precentral gyrus,hypointense,heterogeneous,isointense,heterogeneous
+2900,female,46,Left cerebellar hemisphere and cerebellar vermis,isointense,homogeneous,isointense,heterogeneous
+2864,unknown,NaN,Right frontal-parietal junction,hypointense,unknown,hyperintense,hyperintense
+1921,unknown,NaN,"Right cerebellar hemisphere, Bilateral frontal lobe, Parietal lobe, Cerebellar hemisphere, Left hippocampus, Right occipital lobe",isointense,heterogeneous,isointense,heterogeneous
+1940,unknown,NaN,Left frontal lobe,isointense,heterogeneous,isointense,isointense
+1829,male,46,Left frontal lobe,hypointense,unknown,hyperintense,isointense
+1820,unknown,NaN,Left frontal lobe,hypointense,hyperintense,hyperintense,hypointense
+2922,unknown,NaN,Left frontal lobe,unknown,unknown,hyperintense,hyperintense
+2873,male,47,Right parietal lobe,hypointense,hyperintense,isointense,isointense
+1762,unknown,NaN,"Frontal lobes, Right temporo-occipital lobe",heterogeneous,heterogeneous,heterogeneous,heterogeneous
+1956,male,61,Left parietal lobe,hypointense,unknown,hyperintense,hyperintense
+1919,unknown,NaN,Left cerebellar hemisphere,isointense,heterogeneous,hyperintense,hyperintense
+2110,unknown,NaN,"Left frontal lobe, right cerebellar tonsil",unknown,unknown,unknown,unknown
+2322,unknown,NaN,Left Frontal Lobe,isointense,heterogeneous,hyperintense,isointense
+2870,unknown,NaN,"Left cerebellar hemisphere, left temporal lobe",isointense,unknown,isointense,heterogeneous
+1801,unknown,NaN,Parietal lobe,hyperintense,unknown,hyperintense,heterogeneous
+1710,unknown,NaN,"Parietal Lobe, Right Falx cerebri, Frontal Lobe, cerebellum, brainstem, corpus callosum",hypointense,hyperintense,hyperintense,hyperintense
+1832,male,56,"Right temporal lobe, right parietal lobe, right frontal lobe",hypointense,unknown,hyperintense,hyperintense
+1922,unknown,NaN,Multiple brain parenchyma nodules,unknown,hyperintense,unknown,unknown
+1865,female,56,Left frontal lobe,isointense,heterogeneous,hyperintense,hyperintense
+2913,unknown,NaN,Right parieto-occipital lobe,heterogeneous,hyperintense,heterogeneous,heterogeneous
+1810,unknown,NaN,Left temporal lobe,hypointense,hyperintense,hyperintense,hyperintense
+1560,male,57,"Left frontal lobe, right parietal lobe, left cerebellar hemisphere",heterogeneous,heterogeneous,heterogeneous,heterogeneous
+1870,male,64,Top left,hypointense,homogeneous,hyperintense,heterogeneous
+2898,unknown,NaN,Right parieto-occipital lobe,isointense,unknown,isointense,isointense
+1833,unknown,NaN,Left frontal lobe,isointense,unknown,isointense,isointense
+2541,unknown,NaN,Occipital lobe,hypointense,unknown,hyperintense,hyperintense
+1958,unknown,NaN,Left frontal lobe,isointense,heterogeneous,isointense,isointense
+2352,female,51,"Left parietal lobe, Left occipital lobe",hypointense,heterogeneous,hyperintense,hyperintense
+2924,unknown,NaN,"Left Frontal Lobe, Left Temporal Lobe",hypointense,hyperintense,hyperintense,hyperintense
+2330,female,54,Right cerebellar hemisphere,isointense,heterogeneous,hyperintense,isointense
+1777,female,58,Left occipital lobe,isointense,heterogeneous,isointense,isointense
+1717,unknown,NaN,"Right frontal lobe, right cerebellar hemisphere, near the cerebellar tentorium",hyperintense,heterogeneous,isointense,heterogeneous
+1608,unknown,NaN,"Left Frontal Lobe, Left Temporal Lobe, Left Insular Lobe",hypointense,heterogeneous,hyperintense,hyperintense
+1995,male,11,Right thalamus-midbrain,isointense,hyperintense,hyperintense,isointense
+1134,unknown,NaN,"Left frontal-parietal lobe, Genu corporis callosi, Right frontal lobe, Bilateral temporal lobes",heterogeneous,unknown,heterogeneous,heterogeneous
+1074,unknown,NaN,Left frontal subcortical white matter,isointense,unknown,isointense,heterogeneous
+795,male,15,Left lateral ventricle posterior part - thalamus,isointense,unknown,hyperintense,isointense
+2730,female,47,"Left frontal lobe, Left parietal lobe, Left temporal lobe, Left occipital lobe, Left insular lobe",hypointense,hyperintense,hyperintense,hyperintense
+2823,unknown,NaN,Left Frontal Lobe,isointense,heterogeneous,hyperintense,hyperintense
+906,male,51,Left frontal lobe,hypointense,isointense,hyperintense,hyperintense
+1337,unknown,NaN,Left lateral ventricle temporal horn,isointense,heterogeneous,hyperintense,heterogeneous
+1369,unknown,NaN,"Left Subcortical Nuclei, Left Insular Lobe, Left Temporal Lobe",hypointense,unknown,hyperintense,hyperintense
+2265,unknown,NaN,Left Frontal Lobe,heterogeneous,hyperintense,isointense,isointense
+1650,male,55,Left frontal parietal lobe,hypointense,unknown,hyperintense,hyperintense
+789,unknown,NaN,Left frontal-parietal junction,hypointense,heterogeneous,isointense,isointense
+1330,unknown,NaN,"Left lateral ventricle, Left Parietal lobe",isointense,heterogeneous,isointense,isointense
+907,male,51,Left frontal lobe,hypointense,isointense,hyperintense,hyperintense
+2177,female,50,"Left Frontal Lobe, Left Temporal Lobe",hypointense,heterogeneous,isointense,isointense
+1487,unknown,NaN,Right Temporal Lobe,isointense,hyperintense,isointense,hyperintense
+1877,female,68,Left frontal lobe,hypointense,unknown,isointense,isointense
+831,unknown,NaN,Left frontal lobe,isointense,heterogeneous,isointense,isointense
+2815,unknown,NaN,Parietal lobe,hypointense,hyperintense,hyperintense,hyperintense
+741,male,54,Medulla oblongata,hypointense,heterogeneous,hyperintense,heterogeneous
+1346,female,65,Left parietal lobe,hypointense,hyperintense,hyperintense,hypointense
+2601,unknown,NaN,"Left lateral ventricle, Third ventricle, Pineal region",hypointense,heterogeneous,hyperintense,hyperintense
+1503,male,43,"Left Frontal Lobe, Left Parietal Lobe, Left Insular Lobe, Left Temporal Lobe, Left lateral ventricle, Left brainstem",hypointense,unknown,hyperintense,hyperintense
+1336,unknown,NaN,Left lateral ventricle temporal horn,isointense,heterogeneous,hyperintense,heterogeneous
+1217,female,4,Right frontal parietal lobe,hypointense,heterogeneous,hyperintense,hyperintense
+1544,unknown,NaN,Left Parietal lobe,hypointense,heterogeneous,hyperintense,hyperintense
+920,unknown,NaN,Right frontal area,unknown,unknown,unknown,unknown
+2286,unknown,NaN,"Left temporal lobe, Left insular lobe, Left occipital lobe",hypointense,hyperintense,hyperintense,isointense
+1431,unknown,NaN,"Left Frontal Lobe, Left Temporal Lobe",hypointense,unknown,hyperintense,heterogeneous
+887,unknown,NaN,Left Parietal Lobe,heterogeneous,hyperintense,heterogeneous,heterogeneous
+1577,unknown,NaN,Fourth ventricle,hypointense,unknown,hyperintense,isointense
+1102,male,40,Left parietal lobe,hypointense,unknown,hyperintense,heterogeneous
+100,male,51,Right cerebellar hemisphere,heterogeneous,hyperintense,heterogeneous,heterogeneous
+798,unknown,NaN,Parietal lobe,heterogeneous,unknown,heterogeneous,heterogeneous
+2847,female,54,Left frontal region,isointense,heterogeneous,heterogeneous,heterogeneous
+1645,unknown,NaN,Left parieto-occipital lobe,hypointense,unknown,hyperintense,isointense
+2675,unknown,NaN,Right Temporal Lobe,isointense,unknown,isointense,isointense
+2681,unknown,NaN,"Right Frontal Lobe, Frontal Lobe",isointense,heterogeneous,hyperintense,isointense
+848,female,72,Right temporal-parietal-occipital,isointense,heterogeneous,isointense,heterogeneous
+805,unknown,NaN,Left frontal lobe,hypointense,heterogeneous,hyperintense,hyperintense
+2591,unknown,NaN,Left frontal lobe - Genu corporis callosi,isointense,unknown,isointense,isointense
+2713,male,20,Left occipital lobe,hypointense,heterogeneous,hyperintense,hyperintense
+2179,unknown,NaN,"Left parietal-temporal lobe, Corpus callosum (pressure area",heterogeneous,unknown,hyperintense,heterogeneous
+2683,unknown,NaN,Right frontal-temporal lobe,hypointense,unknown,hyperintense,hyperintense
+1266,unknown,NaN,"Left Thalamus, Pineal region",isointense,heterogeneous,isointense,hyperintense
+1283,unknown,NaN,Right temporal lobe,isointense,heterogeneous,isointense,isointense
+2242,unknown,NaN,"Left Frontal Lobe, Left Insular Lobe, corpus callosum",isointense,heterogeneous,hyperintense,heterogeneous
+1669,female,41,Left parieto-temporal lobe,hypointense,heterogeneous,hyperintense,hyperintense
+1428,unknown,NaN,Left Frontal Lobe,hypointense,hyperintense,hyperintense,hyperintense
+1483,unknown,NaN,"Left Parietal Lobe, Left Occipital Lobe",hypointense,heterogeneous,hyperintense,hyperintense
+965,female,41,Right frontal lobe,isointense,unknown,hyperintense,hyperintense
+1112,male,27,vermis of the cerebellum,isointense,unknown,heterogeneous,heterogeneous
+1515,unknown,NaN,Brainstem,isointense,hyperintense,isointense,isointense
+972,female,56,Left frontal parietal lobe,hypointense,heterogeneous,hyperintense,hyperintense
+1393,unknown,NaN,Left frontal lobe,hypointense,heterogeneous,heterogeneous,hyperintense
+1046,female,46,Right frontal lobe,isointense,unknown,hyperintense,isointense
+1036,unknown,NaN,Left parietal lobe,heterogeneous,unknown,hyperintense,heterogeneous
+914,female,39,Fourth ventricle,heterogeneous,heterogeneous,isointense,heterogeneous
+1338,unknown,NaN,Left frontal lobe,hypointense,unknown,hyperintense,hyperintense
+1545,unknown,NaN,Left Parietal lobe,hypointense,heterogeneous,hyperintense,hyperintense
+863,male,50,"Right temporal lobe, Right Insular lobe, Right Subcortical Nuclei",isointense,heterogeneous,isointense,isointense
+1906,female,52,Right cerebellar hemisphere - right cerebellar peduncle,hypointense,heterogeneous,hyperintense,hyperintense
+2761,unknown,NaN,Left frontal lobe,hypointense,unknown,hyperintense,hyperintense
+2644,unknown,NaN,Left frontal lobe,hypointense,unknown,hyperintense,hyperintense
+891,unknown,NaN,Right frontal-parietal lobe,isointense,heterogeneous,hyperintense,hyperintense
+1799,unknown,NaN,Left frontal lobe,isointense,unknown,hyperintense,hyperintense
+2213,unknown,NaN,Left lateral ventricle body - trigone - left temporal lobe,hypointense,heterogeneous,hyperintense,hyperintense
+860,unknown,NaN,"Left Temporal Lobe, Insular Lobe, Subcortical Nuclei",isointense,hyperintense,isointense,isointense
+1459,male,24,Left temporal lobe medial,heterogeneous,unknown,isointense,isointense
+2206,unknown,NaN,Left occipital lobe,hypointense,heterogeneous,hyperintense,heterogeneous
+1065,female,34,left parietal lobe,hypointense,unknown,hyperintense,hyperintense
+1339,unknown,NaN,Left frontal lobe,hypointense,unknown,hyperintense,hyperintense
+1631,unknown,NaN,Left parietal lobe,hypointense,unknown,hyperintense,heterogeneous
+1463,unknown,NaN,Right parietal-temporal insular lobe,isointense,heterogeneous,isointense,isointense
+716,male,39,Left frontal lobe,hypointense,unknown,hyperintense,hyperintense
+2814,unknown,NaN,Parietal lobe,hypointense,hyperintense,hyperintense,hyperintense
+1448,unknown,NaN,Left temporal lobe,isointense,hyperintense,isointense,hyperintense
+2303,unknown,NaN,Left frontal lobe,isointense,hyperintense,isointense,isointense
+1400,unknown,NaN,Right temporal lobe,hypointense,hyperintense,hyperintense,hyperintense
+1068,female,33,"Left Frontal Lobe, Left Insular Lobe, Left Subcortical Nuclei",hypointense,heterogeneous,hyperintense,hyperintense
+1501,unknown,NaN,"Left Frontal Lobe, Left Parietal lobe, Left Temporal Lobe",isointense,heterogeneous,isointense,isointense
+1328,unknown,NaN,"Left lateral ventricle, Left Parietal lobe",isointense,heterogeneous,isointense,isointense
+1649,unknown,NaN,Left temporoparietal lobe - Left basal ganglia region,heterogeneous,unknown,isointense,heterogeneous
+1213,male,53,Left frontal lobe,isointense,unknown,heterogeneous,heterogeneous
+2688,unknown,NaN,"Bilateral frontal lobes, Corpus callosum, Right basal ganglia, Right insular lobe",heterogeneous,unknown,heterogeneous,heterogeneous
+1049,male,57,Left cerebellar hemisphere - pons arm - cerebellar vermis,hypointense,unknown,hyperintense,hyperintense
+1139,unknown,NaN,"Right Frontal Lobe, Right Parietal Lobe",isointense,heterogeneous,hyperintense,hyperintense
+1007,unknown,NaN,"Left frontal temporal insular lobe, Genu corporis callosi, Left basal ganglia, Right frontal lobe",hypointense,unknown,hyperintense,heterogeneous
+1821,male,62,Right frontal lobe,isointense,unknown,hyperintense,isointense
+823,unknown,NaN,Parietal lobe,isointense,heterogeneous,isointense,heterogeneous
+1858,unknown,NaN,Right temporal lobe,hypointense,unknown,hyperintense,hyperintense
+1118,unknown,NaN,Left frontal lobe - Genu corporis callosi,isointense,heterogeneous,heterogeneous,heterogeneous
+2207,unknown,NaN,Left occipital lobe,hypointense,heterogeneous,hyperintense,heterogeneous
+2763,unknown,NaN,Right lateral ventricle,hypointense,heterogeneous,hyperintense,hyperintense
+1029,unknown,NaN,Left temporal lobe - basal ganglia region,heterogeneous,unknown,hyperintense,heterogeneous
+1285,unknown,NaN,Right Temporal Lobe,hypointense,heterogeneous,hyperintense,hyperintense
+975,unknown,NaN,"Left Frontal Lobe, Left Temporal Lobe, Left Insular Lobe",hypointense,unknown,hyperintense,hyperintense
+1320,unknown,NaN,Left lateral ventricle,hypointense,unknown,hyperintense,hyperintense
+905,unknown,NaN,Left frontal lobe - Genu corporis callosi,isointense,heterogeneous,isointense,isointense
+961,unknown,NaN,Left Subcortical Nuclei,isointense,hyperintense,isointense,hyperintense
+2190,unknown,NaN,Left temporal-parietal lobe and body of corpus callosum,hypointense,heterogeneous,hyperintense,hyperintense
+772,unknown,NaN,Parietal lobe,hypointense,hyperintense,hyperintense,hyperintense
+902,unknown,NaN,Right frontal lobe,hypointense,isointense,hyperintense,hyperintense
+2297,female,16,"Right frontal lobe, Right temporal lobe, Right insular lobe",hypointense,unknown,hyperintense,hyperintense
+2188,unknown,NaN,Left temporal-parietal lobe and body of corpus callosum,hypointense,heterogeneous,hyperintense,hyperintense
+1387,unknown,NaN,Left Frontal Lobe,hypointense,unknown,hyperintense,hyperintense
+1026,unknown,NaN,"Left Frontal Lobe, Left Temporal Lobe, Left Insular Lobe, Left Subcortical Nuclei",hypointense,heterogeneous,hyperintense,hyperintense
+2757,female,45,Left frontal parietal lobe,isointense,unknown,isointense,isointense
+2594,unknown,NaN,Left temporal insular lobe,isointense,unknown,isointense,isointense
+1254,male,31,Brain,hypointense,unknown,hyperintense,hyperintense
+1422,unknown,NaN,"Right frontal, temporal, and insular lobes, genu of the corpus callosum, basal ganglia",hypointense,hyperintense,hyperintense,heterogeneous
+1182,male,51,Left frontal lobe,isointense,heterogeneous,isointense,isointense
+1302,unknown,NaN,Left temporo-parieto-occipital junction,isointense,heterogeneous,isointense,heterogeneous
+1426,unknown,NaN,"Left Frontal Lobe, Left Insular Lobe, Left Temporal Lobe",hypointense,unknown,hyperintense,hyperintense
+1654,unknown,NaN,Left Frontal Lobe,hypointense,hyperintense,hyperintense,hyperintense
+922,unknown,NaN,Fourth ventricle,hypointense,heterogeneous,hyperintense,hyperintense
+835,unknown,NaN,Right frontal-temporal-insular lobe - Hippocampus,hypointense,unknown,isointense,heterogeneous
+1270,unknown,NaN,"Frontal lobes, near the midline",hypointense,unknown,hyperintense,hyperintense
+1002,male,49,Left temporal lobe,hypointense,hyperintense,hyperintense,hyperintense
+1619,unknown,NaN,"Left frontal lobe, Left parietal lobe",heterogeneous,heterogeneous,heterogeneous,heterogeneous
+1247,unknown,NaN,"Left Frontal Lobe, Left Temporal Lobe, Left Insular Lobe",hypointense,unknown,hyperintense,hyperintense
+893,unknown,NaN,"Right lateral ventricle, corpus callosum, Right hippocampus",hypointense,hyperintense,hyperintense,hyperintense
+894,unknown,NaN,"Right Frontal Lobe, Right Temporal Lobe",hypointense,unknown,hyperintense,hyperintense
+1141,unknown,NaN,Left temporal lobe and frontal lobe,unknown,unknown,hyperintense,hyperintense
+919,unknown,NaN,Left Frontal Lobe,hypointense,unknown,hyperintense,hyperintense
+2299,unknown,NaN,Left frontal lobe,hypointense,heterogeneous,hyperintense,hyperintense
+870,unknown,NaN,Right frontal-parietal lobe,isointense,unknown,isointense,isointense
+1081,unknown,NaN,Left temporal lobe,hypointense,heterogeneous,hyperintense,hyperintense
+2283,unknown,NaN,Right Frontal Lobe,hypointense,unknown,hyperintense,hyperintense
+2228,unknown,NaN,"Left frontal-temporal lobe, Genu corporis callosi, Corpus callosum",hypointense,heterogeneous,hyperintense,hyperintense
+856,male,45,Right temporal lobe,heterogeneous,hyperintense,hyperintense,heterogeneous
+2947,female,32,"Sella region - left cavernous sinus area, left parasellar region, left cerebellopontine angle region",unknown,unknown,unknown,unknown
+2951,male,57,"suprasellar region, Sellar region",isointense,hyperintense,heterogeneous,isointense
+2021,male,55,Sella region,isointense,unknown,isointense,heterogeneous
+2030,male,56,Sella region,hypointense,heterogeneous,hyperintense,isointense
+2042,female,79,Sella region,hypointense,unknown,hyperintense,hyperintense
+2039,male,28,Sella turcica - suprasellar,isointense,hyperintense,isointense,isointense
+2043,male,56,sellar region,isointense,hyperintense,isointense,hyperintense
+2020,male,17,sellar and suprasellar regions,hypointense,unknown,hyperintense,hyperintense
+2931,male,42,midbrain,isointense,unknown,hyperintense,hyperintense
+2853,unknown,NaN,Right lateral ventricle trigone,hypointense,unknown,hyperintense,hyperintense
+1996,female,52,Pineal region,isointense,heterogeneous,isointense,isointense
