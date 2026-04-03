@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinical Information EDA</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1117; --card: #1a1d27; --border: #2a2d3a;
+    --text: #e4e6eb; --muted: #8b8fa3; --accent: #6366f1;
+    --green: #22c55e; --amber: #f59e0b; --red: #ef4444; --blue: #3b82f6; --pink: #ec4899;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', -apple-system, sans-serif; padding: 24px; }
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+  .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 28px; }
+  .grid { display: grid; gap: 20px; margin-bottom: 20px; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g3 { grid-template-columns: 1fr 1fr 1fr; }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .card h2 { font-size: 15px; font-weight: 600; margin-bottom: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-card { text-align: center; }
+  .stat-val { font-size: 36px; font-weight: 700; }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .chart-wrap { position: relative; width: 100%; }
+  .chart-wrap.h300 { height: 300px; }
+  .chart-wrap.h350 { height: 350px; }
+  .chart-wrap.h400 { height: 400px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; }
+  .bar { height: 8px; border-radius: 4px; background: var(--accent); display: inline-block; vertical-align: middle; }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; }
+  .tag-red { background: rgba(239,68,68,0.15); color: var(--red); }
+  .tag-amber { background: rgba(245,158,11,0.15); color: var(--amber); }
+  .tag-green { background: rgba(34,197,94,0.15); color: var(--green); }
+  .section-title { font-size: 20px; font-weight: 700; margin: 32px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .insight { background: rgba(99,102,241,0.08); border-left: 3px solid var(--accent); padding: 12px 16px; border-radius: 0 8px 8px 0; margin-top: 12px; font-size: 13px; line-height: 1.6; }
+  .insight strong { color: var(--accent); }
+  @media (max-width: 900px) { .g2, .g3, .g4 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<h1>Clinical Information - Exploratory Data Analysis</h1>
+<p class="subtitle">Brain Tumor Classification Dataset &middot; Train (1983) + Val (283) + Test (572) = 2838 cases</p>
+
+<!-- Overview Stats -->
+<div class="grid g4">
+  <div class="card stat-card"><div class="stat-val" style="color:var(--accent)">2,266</div><div class="stat-label">Labeled Samples (Train+Val)</div></div>
+  <div class="card stat-card"><div class="stat-val" style="color:var(--green)">5</div><div class="stat-label">Tumor Classes</div></div>
+  <div class="card stat-card"><div class="stat-val" style="color:var(--amber)">678</div><div class="stat-label">Age Available (30.0%)</div></div>
+  <div class="card stat-card"><div class="stat-val" style="color:var(--red)">70.1%</div><div class="stat-label">Sex Unknown Rate</div></div>
+</div>
+
+<!-- Class Distribution -->
+<div class="section-title">1. Target Class Distribution</div>
+<div class="grid g2">
+  <div class="card">
+    <h2>Class Counts (Train + Val)</h2>
+    <div class="chart-wrap h300"><canvas id="classBar"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>Class Proportions</h2>
+    <div class="chart-wrap h300"><canvas id="classPie"></canvas></div>
+    <div class="insight">
+      <strong>Imbalanced classes:</strong> Glioma (46.7%) and Meningioma (36.7%) dominate.
+      Pineal/Choroid plexus tumour has only 26 samples (1.1%) — severe minority class.
+      Consider using weighted loss or oversampling strategies.
+    </div>
+  </div>
+</div>
+
+<!-- Missing Data -->
+<div class="section-title">2. Missing Data Analysis</div>
+<div class="grid g2">
+  <div class="card">
+    <h2>Missing / Unknown Values (Train+Val, n=2266)</h2>
+    <div class="chart-wrap h300"><canvas id="missingBar"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>Missing Rate Details</h2>
+    <table>
+      <thead><tr><th>Feature</th><th>Missing</th><th>Rate</th><th>Severity</th></tr></thead>
+      <tbody>
+        <tr><td>Sex</td><td>1,588</td><td>70.1%</td><td><span class="tag tag-red">Critical</span></td></tr>
+        <tr><td>Age</td><td>1,588</td><td>70.1%</td><td><span class="tag tag-red">Critical</span></td></tr>
+        <tr><td>Signal Intensity (T1c)</td><td>550</td><td>24.3%</td><td><span class="tag tag-amber">High</span></td></tr>
+        <tr><td>Signal Intensity (T1)</td><td>49</td><td>2.2%</td><td><span class="tag tag-green">Low</span></td></tr>
+        <tr><td>Signal Intensity (T2)</td><td>45</td><td>2.0%</td><td><span class="tag tag-green">Low</span></td></tr>
+        <tr><td>Signal Intensity (T2-FLAIR)</td><td>32</td><td>1.4%</td><td><span class="tag tag-green">Low</span></td></tr>
+        <tr><td>Tumor Location</td><td>0</td><td>0.0%</td><td><span class="tag tag-green">None</span></td></tr>
+      </tbody>
+    </table>
+    <div class="insight">
+      <strong>Key issue:</strong> Sex & Age are missing for 70.1% of cases (they share the same missing pattern — when Sex is unknown, Age is NaN).
+      T1c signal has 24.3% unknown values. Tumor Location is always present.
+    </div>
+  </div>
+</div>
+
+<!-- Demographics -->
+<div class="section-title">3. Demographics (Sex & Age)</div>
+<div class="grid g2">
+  <div class="card">
+    <h2>Sex Distribution by Class</h2>
+    <div class="chart-wrap h350"><canvas id="sexClass"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>Age Distribution by Class</h2>
+    <div class="chart-wrap h350"><canvas id="ageBox"></canvas></div>
+    <div class="insight">
+      <strong>Age patterns:</strong> Glioma spans all ages (3–76, mean 45.1), suggesting both pediatric &amp; adult subtypes.
+      Meningioma &amp; Metastasis cluster in older adults (mean ~54–55).
+      Pineal/Choroid plexus tumours are younger (mean 35.4).
+      Sellar tumours show bimodal distribution.
+    </div>
+  </div>
+</div>
+
+<!-- Age table -->
+<div class="grid" style="grid-template-columns:1fr">
+  <div class="card">
+    <h2>Age Statistics by Class (where Age is available)</h2>
+    <table>
+      <thead><tr><th>Class</th><th>n</th><th>Mean</th><th>Median</th><th>Std</th><th>Min</th><th>Max</th></tr></thead>
+      <tbody>
+        <tr><td>Meningioma</td><td>164</td><td>54.0</td><td>55.0</td><td>10.5</td><td>29</td><td>74</td></tr>
+        <tr><td>Brain Metastase Tumour</td><td>84</td><td>54.9</td><td>56.0</td><td>9.6</td><td>31</td><td>71</td></tr>
+        <tr><td>Glioma</td><td>361</td><td>45.1</td><td>49.0</td><td>17.1</td><td>3</td><td>76</td></tr>
+        <tr><td>Tumors of the sellar region</td><td>52</td><td>44.6</td><td>51.5</td><td>17.5</td><td>10</td><td>79</td></tr>
+        <tr><td>Pineal/Choroid plexus tumour</td><td>17</td><td>35.4</td><td>38.0</td><td>17.3</td><td>5</td><td>66</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Tumor Location -->
+<div class="section-title">4. Tumor Location Analysis</div>
+<div class="grid g2">
+  <div class="card">
+    <h2>Simplified Location Distribution (All Labeled)</h2>
+    <div class="chart-wrap h400"><canvas id="locAll"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>Location by Class (Stacked)</h2>
+    <div class="chart-wrap h400"><canvas id="locClass"></canvas></div>
+    <div class="insight">
+      <strong>Location-class patterns:</strong>
+      Meningioma: widespread but especially Frontal + Parietal + Cranial fossa.
+      Glioma: Frontal (55%) &amp; Temporal (21%) dominated.
+      Sellar tumours: almost exclusively in Sellar region (93.8%) — strong discriminative feature!
+      Pineal/Choroid: mainly Ventricle (54%) &amp; Pineal regions.
+      Metastases: more uniformly distributed.
+    </div>
+  </div>
+</div>
+
+<!-- Signal Intensity -->
+<div class="section-title">5. MRI Signal Intensity Patterns</div>
+<div class="grid g2">
+  <div class="card">
+    <h2>T1 Signal by Class</h2>
+    <div class="chart-wrap h300"><canvas id="sigT1"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>T1c (Contrast) Signal by Class</h2>
+    <div class="chart-wrap h300"><canvas id="sigT1c"></canvas></div>
+  </div>
+</div>
+<div class="grid g2">
+  <div class="card">
+    <h2>T2 Signal by Class</h2>
+    <div class="chart-wrap h300"><canvas id="sigT2"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>T2-FLAIR Signal by Class</h2>
+    <div class="chart-wrap h300"><canvas id="sigFLAIR"></canvas></div>
+  </div>
+</div>
+<div class="grid" style="grid-template-columns:1fr">
+  <div class="card">
+    <div class="insight">
+      <strong>Signal intensity insights:</strong><br>
+      &bull; <strong>T1:</strong> Meningioma is predominantly isointense (60.6%); Glioma is predominantly hypointense (56.6%).<br>
+      &bull; <strong>T1c (Contrast):</strong> Meningioma has clear homogeneous enhancement (34.9%); Glioma has high unknown rate (35.3%) + heterogeneous (40.2%).<br>
+      &bull; <strong>T2:</strong> Glioma shows strong hyperintensity (63.4%); Meningioma is more mixed (47.4% hyper, 41.3% iso).<br>
+      &bull; <strong>T2-FLAIR:</strong> Meningioma tends to be hyperintense (58.6%); Brain Metastases show relatively more heterogeneous (36.1%) signal.
+    </div>
+  </div>
+</div>
+
+<!-- Train/Val/Test comparison -->
+<div class="section-title">6. Split Comparison (Train vs Val vs Test)</div>
+<div class="grid g3">
+  <div class="card">
+    <h2>Sex Distribution by Split</h2>
+    <div class="chart-wrap h300"><canvas id="splitSex"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>T1 Signal by Split</h2>
+    <div class="chart-wrap h300"><canvas id="splitT1"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>T2 Signal by Split</h2>
+    <div class="chart-wrap h300"><canvas id="splitT2"></canvas></div>
+  </div>
+</div>
+
+<div class="grid" style="grid-template-columns:1fr">
+  <div class="card">
+    <div class="insight">
+      <strong>Split consistency:</strong> Train/Val/Test distributions appear similar across Sex, T1, and T2 signal features — no obvious data leakage or distribution shift. The unknown rate for Sex/Age is consistently ~70% across all splits.
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;color:var(--muted);padding:40px 0 20px;font-size:12px;">
+  Generated on 2026-04-03 &middot; Brain Tumor Classification - Clinical EDA
+</div>
+
+<script>
+const COLORS = {
+  'Meningioma': '#6366f1',
+  'Brain Metastase Tumour': '#f59e0b',
+  'Glioma': '#22c55e',
+  'Tumors of the sellar region': '#ec4899',
+  'Pineal tumour and Choroid plexus tumour': '#3b82f6'
+};
+const SHORT = {
+  'Meningioma': 'Menin.',
+  'Brain Metastase Tumour': 'Metast.',
+  'Glioma': 'Glioma',
+  'Tumors of the sellar region': 'Sellar',
+  'Pineal tumour and Choroid plexus tumour': 'Pineal/CP'
+};
+const CLASSES = ['Meningioma','Brain Metastase Tumour','Glioma','Tumors of the sellar region','Pineal tumour and Choroid plexus tumour'];
+const CLASS_COUNTS = [832, 288, 1056, 64, 26];
+
+Chart.defaults.color = '#8b8fa3';
+Chart.defaults.borderColor = '#2a2d3a';
+Chart.defaults.font.family = 'Inter, -apple-system, sans-serif';
+
+function mkChart(id, cfg) {
+  return new Chart(document.getElementById(id), cfg);
+}
+
+// 1. Class bar
+mkChart('classBar', {
+  type: 'bar',
+  data: {
+    labels: CLASSES.map(c => SHORT[c]),
+    datasets: [{
+      data: CLASS_COUNTS,
+      backgroundColor: CLASSES.map(c => COLORS[c]),
+      borderRadius: 6, barPercentage: 0.6
+    }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, grid: { color: '#2a2d3a' } }, x: { grid: { display: false } } }
+  }
+});
+
+// Class pie
+mkChart('classPie', {
+  type: 'doughnut',
+  data: {
+    labels: CLASSES.map(c => SHORT[c]),
+    datasets: [{ data: CLASS_COUNTS, backgroundColor: CLASSES.map(c => COLORS[c]), borderWidth: 0 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, cutout: '55%',
+    plugins: { legend: { position: 'right', labels: { padding: 12, usePointStyle: true, pointStyle: 'circle' } } }
+  }
+});
+
+// 2. Missing bar
+mkChart('missingBar', {
+  type: 'bar',
+  data: {
+    labels: ['Sex','Age','T1c','T1','T2','T2-FLAIR','Tumor Loc'],
+    datasets: [{
+      label: 'Missing count',
+      data: [1588, 1588, 550, 49, 45, 32, 0],
+      backgroundColor: ['#ef4444','#ef4444','#f59e0b','#22c55e','#22c55e','#22c55e','#22c55e'],
+      borderRadius: 6, barPercentage: 0.6
+    }]
+  },
+  options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { x: { beginAtZero: true, grid: { color: '#2a2d3a' } }, y: { grid: { display: false } } }
+  }
+});
+
+// 3. Sex x Class
+const sexData = {"Meningioma":{"female":104,"unknown":668,"male":60},"Brain Metastase Tumour":{"unknown":204,"male":49,"female":35},"Glioma":{"unknown":695,"female":160,"male":201},"Tumors of the sellar region":{"male":29,"female":23,"unknown":12},"Pineal tumour and Choroid plexus tumour":{"unknown":9,"male":6,"female":11}};
+mkChart('sexClass', {
+  type: 'bar',
+  data: {
+    labels: CLASSES.map(c => SHORT[c]),
+    datasets: [
+      { label: 'Female', data: CLASSES.map(c => sexData[c]?.female||0), backgroundColor: '#ec4899', borderRadius: 4 },
+      { label: 'Male', data: CLASSES.map(c => sexData[c]?.male||0), backgroundColor: '#3b82f6', borderRadius: 4 },
+      { label: 'Unknown', data: CLASSES.map(c => sexData[c]?.unknown||0), backgroundColor: '#4b5563', borderRadius: 4 }
+    ]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { usePointStyle: true, pointStyle: 'circle' } } },
+    scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, grid: { color: '#2a2d3a' } } }
+  }
+});
+
+// Age violin-like (horizontal box approximation using scatter)
+const ageByClass = {"Meningioma":[29,29,29,33,33,33,34,35,35,35,35,36,36,36,38,38,39,39,39,39,42,42,43,43,43,44,45,45,45,45,46,46,46,46,46,47,47,47,47,47,47,47,47,48,48,48,48,49,49,49,49,50,50,50,50,50,51,51,51,51,52,52,52,52,52,52,52,53,53,53,53,53,53,53,54,54,54,54,54,54,55,55,55,55,55,55,55,55,56,56,56,56,56,56,56,56,56,56,56,57,57,57,57,57,58,58,58,58,58,58,58,59,59,59,59,59,59,59,59,59,60,60,60,60,60,60,60,60,60,61,61,63,64,64,64,65,65,65,65,66,66,66,66,67,67,67,69,69,69,69,69,69,70,71,72,72,72,73,73,73,74,74,74,74],"Brain Metastase Tumour":[31,35,35,35,37,38,38,41,43,44,44,44,44,44,46,46,46,46,47,47,48,49,49,50,50,50,51,51,51,51,51,52,53,53,54,54,54,54,55,55,56,56,56,56,57,57,57,58,58,58,58,58,58,59,59,60,60,60,61,61,62,62,62,62,62,62,64,64,64,65,65,65,66,66,66,67,68,68,69,70,70,70,71,71],"Glioma":[3,4,6,7,7,7,8,8,9,9,9,9,9,9,9,9,9,9,11,11,11,11,11,11,12,13,14,14,15,15,15,16,16,16,16,16,16,16,17,17,19,20,20,21,21,21,22,22,23,24,24,25,25,27,27,27,27,27,28,28,28,30,30,30,30,30,30,31,31,31,31,31,32,32,32,32,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,34,35,35,35,35,36,37,37,37,38,38,38,38,38,39,39,39,39,39,39,40,40,40,40,40,40,40,40,40,40,40,40,41,41,41,41,41,41,41,41,42,42,43,43,43,43,43,43,43,44,44,44,44,44,44,44,44,45,45,45,45,45,45,45,45,45,45,45,45,45,46,46,46,47,47,47,47,47,47,47,47,48,49,49,49,49,49,49,49,49,49,49,49,49,49,50,50,50,50,50,50,50,50,50,50,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,52,52,52,52,52,52,52,52,52,52,52,52,52,53,53,53,53,53,53,53,53,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,55,55,55,55,55,55,55,55,55,55,55,55,55,55,56,56,56,56,56,56,57,57,57,57,57,57,57,57,57,57,58,58,58,58,59,59,59,59,59,59,59,59,59,60,60,60,60,60,60,61,62,62,62,62,62,62,62,62,63,63,64,65,65,65,65,65,65,65,65,65,66,66,67,67,67,67,68,68,68,68,68,68,68,68,69,69,69,69,69,69,69,70,71,71,71,71,71,71,72,72,72,73,74,74,75,75,76,76,76],"Tumors of the sellar region":[10,11,14,14,15,15,17,23,23,23,28,28,30,30,32,32,37,42,42,44,44,44,46,48,51,51,52,52,52,52,53,55,56,56,56,56,56,57,57,57,58,58,59,62,62,63,63,63,63,64,66,79],"Pineal tumour and Choroid plexus tumour":[5,7,9,22,25,33,33,35,38,40,42,45,46,47,52,56,66]};
+const ageStats = {"Meningioma":{"mean":54.0,"median":55.0,"min":29,"max":74,"n":164,"stdev":10.5},"Brain Metastase Tumour":{"mean":54.9,"median":56.0,"min":31,"max":71,"n":84,"stdev":9.6},"Glioma":{"mean":45.1,"median":49.0,"min":3,"max":76,"n":361,"stdev":17.1},"Tumors of the sellar region":{"mean":44.6,"median":51.5,"min":10,"max":79,"n":52,"stdev":17.5},"Pineal tumour and Choroid plexus tumour":{"mean":35.4,"median":38.0,"min":5,"max":66,"n":17,"stdev":17.3}};
+
+// Age histogram
+function binAges(ages, binSize=5) {
+  const bins = {};
+  for (let a of ages) {
+    const b = Math.floor(a / binSize) * binSize;
+    bins[b] = (bins[b] || 0) + 1;
+  }
+  return bins;
+}
+const allBinLabels = [];
+for (let i = 0; i <= 80; i += 5) allBinLabels.push(i);
+const ageDatasets = CLASSES.map(cls => {
+  const bins = binAges(ageByClass[cls] || [], 5);
+  return {
+    label: SHORT[cls],
+    data: allBinLabels.map(b => bins[b] || 0),
+    backgroundColor: COLORS[cls] + '99',
+    borderColor: COLORS[cls],
+    borderWidth: 1.5,
+    borderRadius: 3
+  };
+});
+mkChart('ageBox', {
+  type: 'bar',
+  data: { labels: allBinLabels.map(b => `${b}-${b+4}`), datasets: ageDatasets },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } } },
+    scales: { x: { grid: { display: false } }, y: { grid: { color: '#2a2d3a' }, beginAtZero: true } }
+  }
+});
+
+// 4. Tumor location
+const locData = {"Meningioma":{"Frontal":308,"Cerebellar":83,"Cranial fossa":78,"Falx cerebri":49,"Temporal":64,"Occipital":22,"Parietal":108,"Ventricle":31,"Other":29,"Sellar":52,"Brainstem":6,"Pineal":1,"Basal ganglia":1},"Brain Metastase Tumour":{"Occipital":37,"Parietal":49,"Temporal":33,"Frontal":122,"Cerebellar":29,"Cranial fossa":3,"Other":11,"Sellar":2,"Basal ganglia":2},"Glioma":{"Temporal":226,"Frontal":579,"Ventricle":42,"Other":17,"Occipital":30,"Sellar":11,"Pineal":2,"Cerebellar":22,"Parietal":65,"Insular":11,"Corpus callosum":5,"Basal ganglia":17,"Thalamus":4,"Brainstem":17,"Falx cerebri":3,"Hippocampal":3,"Cranial fossa":2},"Tumors of the sellar region":{"Sellar":60,"Frontal":1,"Brainstem":2,"Cerebellar":1},"Pineal tumour and Choroid plexus tumour":{"Ventricle":14,"Pineal":5,"Brainstem":2,"Cerebellar":4,"Frontal":1}};
+
+const allLocs = ['Frontal','Temporal','Parietal','Occipital','Cerebellar','Sellar','Falx cerebri','Cranial fossa','Ventricle','Basal ganglia','Brainstem','Pineal','Other'];
+const locTotals = {};
+allLocs.forEach(l => { locTotals[l] = 0; CLASSES.forEach(c => { locTotals[l] += (locData[c]?.[l]||0); }); });
+
+mkChart('locAll', {
+  type: 'bar',
+  data: {
+    labels: allLocs,
+    datasets: [{ data: allLocs.map(l => locTotals[l]), backgroundColor: '#6366f199', borderColor: '#6366f1', borderWidth: 1.5, borderRadius: 6, barPercentage: 0.7 }]
+  },
+  options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { x: { beginAtZero: true, grid: { color: '#2a2d3a' } }, y: { grid: { display: false } } }
+  }
+});
+
+mkChart('locClass', {
+  type: 'bar',
+  data: {
+    labels: allLocs,
+    datasets: CLASSES.map(cls => ({
+      label: SHORT[cls],
+      data: allLocs.map(l => locData[cls]?.[l] || 0),
+      backgroundColor: COLORS[cls] + 'cc',
+      borderRadius: 3
+    }))
+  },
+  options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { usePointStyle: true, pointStyle: 'circle', font: { size: 11 } } } },
+    scales: { x: { stacked: true, grid: { color: '#2a2d3a' } }, y: { stacked: true, grid: { display: false } } }
+  }
+});
+
+// 5. Signal Intensity charts
+function sigChart(canvasId, sigData) {
+  const signals = ['hypointense','isointense','hyperintense','heterogeneous','homogeneous','unknown'];
+  const sigColors = { hypointense:'#3b82f6', isointense:'#22c55e', hyperintense:'#ef4444', heterogeneous:'#f59e0b', homogeneous:'#8b5cf6', unknown:'#4b5563' };
+  mkChart(canvasId, {
+    type: 'bar',
+    data: {
+      labels: CLASSES.map(c => SHORT[c]),
+      datasets: signals.filter(s => {
+        return CLASSES.some(c => (sigData[c]?.[s]||0) > 0);
+      }).map(s => ({
+        label: s,
+        data: CLASSES.map(c => sigData[c]?.[s] || 0),
+        backgroundColor: sigColors[s] + 'cc',
+        borderRadius: 3
+      }))
+    },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { usePointStyle: true, pointStyle: 'circle', font: { size: 10 } } } },
+      scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, grid: { color: '#2a2d3a' } } }
+    }
+  });
+}
+
+sigChart('sigT1', {"Meningioma":{"isointense":504,"hypointense":298,"hyperintense":6,"heterogeneous":14,"unknown":10},"Brain Metastase Tumour":{"heterogeneous":28,"isointense":112,"hypointense":111,"unknown":16,"hyperintense":21},"Glioma":{"hypointense":599,"isointense":319,"heterogeneous":108,"unknown":21,"hyperintense":9},"Tumors of the sellar region":{"hypointense":21,"isointense":27,"heterogeneous":7,"hyperintense":8,"unknown":1},"Pineal tumour and Choroid plexus tumour":{"isointense":13,"hypointense":12,"unknown":1}});
+
+sigChart('sigT1c', {"Meningioma":{"heterogeneous":227,"homogeneous":290,"hyperintense":260,"unknown":49,"isointense":4,"hypointense":2},"Brain Metastase Tumour":{"heterogeneous":118,"homogeneous":9,"unknown":106,"hyperintense":55},"Glioma":{"isointense":19,"hyperintense":225,"heterogeneous":425,"unknown":373,"homogeneous":14},"Tumors of the sellar region":{"heterogeneous":31,"hyperintense":17,"unknown":12,"homogeneous":4},"Pineal tumour and Choroid plexus tumour":{"homogeneous":4,"heterogeneous":10,"unknown":10,"hyperintense":2}});
+
+sigChart('sigT2', {"Meningioma":{"isointense":343,"hyperintense":394,"hypointense":15,"heterogeneous":71,"unknown":9},"Brain Metastase Tumour":{"heterogeneous":33,"hyperintense":125,"isointense":101,"unknown":18,"hypointense":11},"Glioma":{"hyperintense":671,"isointense":269,"heterogeneous":94,"unknown":15,"hypointense":7},"Tumors of the sellar region":{"hyperintense":33,"isointense":21,"heterogeneous":4,"hypointense":3,"unknown":3},"Pineal tumour and Choroid plexus tumour":{"hyperintense":16,"isointense":8,"heterogeneous":1,"hypointense":1}});
+
+sigChart('sigFLAIR', {"Meningioma":{"heterogeneous":136,"hyperintense":487,"isointense":186,"hypointense":14,"unknown":9},"Brain Metastase Tumour":{"heterogeneous":104,"hyperintense":79,"isointense":87,"unknown":10,"hypointense":8},"Glioma":{"hyperintense":571,"isointense":223,"heterogeneous":236,"hypointense":14,"unknown":12},"Tumors of the sellar region":{"hyperintense":29,"heterogeneous":16,"isointense":15,"hypointense":3,"unknown":1},"Pineal tumour and Choroid plexus tumour":{"heterogeneous":5,"isointense":8,"hyperintense":13}});
+
+// 6. Split comparison
+mkChart('splitSex', {
+  type: 'bar',
+  data: {
+    labels: ['Train','Val','Test'],
+    datasets: [
+      { label: 'Female', data: [294,39,93], backgroundColor: '#ec4899', borderRadius: 4 },
+      { label: 'Male', data: [305,40,89], backgroundColor: '#3b82f6', borderRadius: 4 },
+      { label: 'Unknown', data: [1384,204,390], backgroundColor: '#4b5563', borderRadius: 4 }
+    ]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { usePointStyle: true, pointStyle: 'circle' } } },
+    scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, grid: { color: '#2a2d3a' } } }
+  }
+});
+
+mkChart('splitT1', {
+  type: 'bar',
+  data: {
+    labels: ['Train','Val','Test'],
+    datasets: [
+      { label: 'hypointense', data: [914,127,253], backgroundColor: '#3b82f6cc', borderRadius: 3 },
+      { label: 'isointense', data: [848,127,249], backgroundColor: '#22c55ecc', borderRadius: 3 },
+      { label: 'hyperintense', data: [41,3,14], backgroundColor: '#ef4444cc', borderRadius: 3 },
+      { label: 'heterogeneous', data: [139,18,41], backgroundColor: '#f59e0bcc', borderRadius: 3 },
+      { label: 'unknown', data: [41,8,15], backgroundColor: '#4b5563cc', borderRadius: 3 }
+    ]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { usePointStyle: true, pointStyle: 'circle', font: { size: 10 } } } },
+    scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, grid: { color: '#2a2d3a' } } }
+  }
+});
+
+mkChart('splitT2', {
+  type: 'bar',
+  data: {
+    labels: ['Train','Val','Test'],
+    datasets: [
+      { label: 'hyperintense', data: [1078,161,325], backgroundColor: '#ef4444cc', borderRadius: 3 },
+      { label: 'isointense', data: [652,90,186], backgroundColor: '#22c55ecc', borderRadius: 3 },
+      { label: 'heterogeneous', data: [177,26,42], backgroundColor: '#f59e0bcc', borderRadius: 3 },
+      { label: 'hypointense', data: [36,1,11], backgroundColor: '#3b82f6cc', borderRadius: 3 },
+      { label: 'unknown', data: [40,5,8], backgroundColor: '#4b5563cc', borderRadius: 3 }
+    ]
+  },
+  options: { responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { usePointStyle: true, pointStyle: 'circle', font: { size: 10 } } } },
+    scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, grid: { color: '#2a2d3a' } } }
+  }
+});
+</script>
+</body>
+</html>
