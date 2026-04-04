@@ -1,0 +1,573 @@
+case_id,Overall_class
+1,Meningioma
+5,Meningioma
+9,Meningioma
+14,Meningioma
+35,Meningioma
+48,Meningioma
+50,Meningioma
+52,Meningioma
+55,Meningioma
+58,Glioma
+61,Meningioma
+65,Glioma
+71,Meningioma
+73,Glioma
+74,Glioma
+78,Meningioma
+80,Meningioma
+87,Meningioma
+88,Meningioma
+101,Brain Metastase Tumour
+103,Meningioma
+104,Meningioma
+109,Meningioma
+113,Meningioma
+114,Meningioma
+118,Meningioma
+122,Meningioma
+124,Meningioma
+127,Meningioma
+137,Meningioma
+151,Meningioma
+152,Meningioma
+156,Meningioma
+166,Meningioma
+169,Meningioma
+171,Meningioma
+173,Meningioma
+175,Meningioma
+176,Meningioma
+177,Meningioma
+185,Meningioma
+188,Meningioma
+192,Meningioma
+194,Brain Metastase Tumour
+205,Meningioma
+210,Meningioma
+218,Meningioma
+224,Meningioma
+229,Meningioma
+231,Meningioma
+232,Meningioma
+235,Meningioma
+239,Meningioma
+243,Meningioma
+248,Meningioma
+249,Meningioma
+253,Meningioma
+265,Meningioma
+267,Meningioma
+272,Meningioma
+284,Meningioma
+285,Meningioma
+286,Meningioma
+288,Meningioma
+289,Meningioma
+291,Meningioma
+299,Meningioma
+300,Meningioma
+311,Meningioma
+315,Meningioma
+320,Meningioma
+341,Meningioma
+342,Meningioma
+351,Meningioma
+363,Meningioma
+367,Meningioma
+371,Meningioma
+382,Meningioma
+385,Meningioma
+386,Brain Metastase Tumour
+389,Glioma
+392,Meningioma
+398,Meningioma
+404,Meningioma
+407,Meningioma
+412,Meningioma
+413,Meningioma
+414,Meningioma
+415,Meningioma
+419,Meningioma
+430,Meningioma
+432,Meningioma
+433,Meningioma
+435,Meningioma
+457,Meningioma
+463,Meningioma
+470,Meningioma
+472,Meningioma
+476,Meningioma
+485,Meningioma
+487,Meningioma
+492,Meningioma
+497,Meningioma
+498,Meningioma
+501,Meningioma
+504,Glioma
+507,Meningioma
+530,Meningioma
+534,Meningioma
+540,Meningioma
+541,Meningioma
+548,Meningioma
+550,Meningioma
+570,Meningioma
+572,Meningioma
+575,Meningioma
+578,Meningioma
+580,Meningioma
+581,Glioma
+583,Glioma
+595,Meningioma
+597,Meningioma
+598,Meningioma
+603,Meningioma
+607,Meningioma
+613,Meningioma
+624,Glioma
+630,Meningioma
+631,Glioma
+636,Meningioma
+643,Meningioma
+652,Meningioma
+657,Glioma
+667,Meningioma
+674,Meningioma
+676,Glioma
+677,Meningioma
+678,Meningioma
+679,Meningioma
+686,Meningioma
+690,Meningioma
+691,Meningioma
+692,Meningioma
+694,Meningioma
+699,Meningioma
+708,Meningioma
+714,Meningioma
+724,Meningioma
+734,Meningioma
+736,Meningioma
+737,Meningioma
+739,Meningioma
+744,Meningioma
+754,Meningioma
+760,Meningioma
+763,Meningioma
+766,Glioma
+767,Glioma
+776,Glioma
+783,Glioma
+792,Glioma
+796,Glioma
+804,Glioma
+807,Glioma
+814,Glioma
+817,Glioma
+818,Glioma
+842,Glioma
+847,Glioma
+850,Glioma
+857,Glioma
+864,Meningioma
+868,Glioma
+871,Glioma
+872,Glioma
+873,Glioma
+874,Glioma
+878,Glioma
+884,Glioma
+885,Glioma
+889,Glioma
+892,Glioma
+895,Glioma
+896,Glioma
+899,Glioma
+900,Glioma
+909,Glioma
+916,Glioma
+918,Glioma
+930,Glioma
+933,Glioma
+942,Glioma
+945,Glioma
+947,Glioma
+949,Glioma
+954,Glioma
+957,Glioma
+958,Glioma
+963,Glioma
+966,Glioma
+974,Glioma
+980,Glioma
+981,Glioma
+985,Brain Metastase Tumour
+986,Glioma
+991,Glioma
+1004,Glioma
+1013,Glioma
+1015,Brain Metastase Tumour
+1020,Glioma
+1028,Glioma
+1041,Glioma
+1043,Glioma
+1045,Glioma
+1050,Brain Metastase Tumour
+1072,Glioma
+1076,Glioma
+1077,Glioma
+1082,Glioma
+1085,Glioma
+1086,Glioma
+1091,Glioma
+1094,Glioma
+1095,Glioma
+1098,Glioma
+1099,Brain Metastase Tumour
+1101,Glioma
+1111,Glioma
+1126,Glioma
+1136,Glioma
+1149,Brain Metastase Tumour
+1150,Glioma
+1153,Glioma
+1154,Glioma
+1171,Glioma
+1175,Glioma
+1193,Glioma
+1197,Glioma
+1198,Glioma
+1200,Brain Metastase Tumour
+1202,Glioma
+1203,Glioma
+1205,Glioma
+1210,Glioma
+1212,Glioma
+1214,Glioma
+1216,Glioma
+1222,Glioma
+1225,Glioma
+1231,Glioma
+1233,Meningioma
+1234,Glioma
+1236,Glioma
+1241,Glioma
+1250,Glioma
+1253,Glioma
+1256,Glioma
+1259,Glioma
+1263,Glioma
+1267,Glioma
+1271,Glioma
+1273,Glioma
+1275,Glioma
+1277,Meningioma
+1280,Glioma
+1308,Glioma
+1309,Glioma
+1311,Glioma
+1312,Glioma
+1313,Glioma
+1316,Glioma
+1318,Glioma
+1322,Glioma
+1335,Glioma
+1341,Glioma
+1342,Glioma
+1357,Glioma
+1365,Glioma
+1373,Glioma
+1374,Glioma
+1380,Glioma
+1384,Glioma
+1403,Glioma
+1412,Glioma
+1416,Brain Metastase Tumour
+1417,Brain Metastase Tumour
+1421,Glioma
+1423,Glioma
+1425,Glioma
+1442,Glioma
+1443,Glioma
+1456,Glioma
+1469,Brain Metastase Tumour
+1472,Glioma
+1474,Meningioma
+1476,Glioma
+1484,Glioma
+1506,Glioma
+1508,Glioma
+1516,Glioma
+1524,Glioma
+1525,Glioma
+1527,Glioma
+1531,Glioma
+1543,Glioma
+1549,Glioma
+1550,Glioma
+1563,Brain Metastase Tumour
+1564,Glioma
+1565,Glioma
+1566,Glioma
+1569,Glioma
+1576,Glioma
+1587,Glioma
+1603,Glioma
+1610,Glioma
+1614,Glioma
+1617,Glioma
+1625,Glioma
+1626,Glioma
+1637,Glioma
+1655,Glioma
+1660,Glioma
+1661,Glioma
+1662,Glioma
+1663,Glioma
+1673,Glioma
+1679,Glioma
+1687,Glioma
+1693,Glioma
+1695,Glioma
+1696,Glioma
+1700,Glioma
+1714,Glioma
+1716,Brain Metastase Tumour
+1724,Brain Metastase Tumour
+1728,Brain Metastase Tumour
+1731,Glioma
+1733,Brain Metastase Tumour
+1735,Brain Metastase Tumour
+1736,Brain Metastase Tumour
+1743,Brain Metastase Tumour
+1749,Brain Metastase Tumour
+1760,Glioma
+1769,Brain Metastase Tumour
+1771,Brain Metastase Tumour
+1773,Meningioma
+1789,Glioma
+1793,Brain Metastase Tumour
+1800,Brain Metastase Tumour
+1803,Brain Metastase Tumour
+1804,Brain Metastase Tumour
+1805,Brain Metastase Tumour
+1807,Brain Metastase Tumour
+1809,Brain Metastase Tumour
+1812,Brain Metastase Tumour
+1819,Glioma
+1830,Glioma
+1831,Brain Metastase Tumour
+1835,Brain Metastase Tumour
+1837,Brain Metastase Tumour
+1847,Brain Metastase Tumour
+1849,Glioma
+1878,Glioma
+1880,Glioma
+1882,Brain Metastase Tumour
+1888,Brain Metastase Tumour
+1893,Glioma
+1897,Brain Metastase Tumour
+1899,Brain Metastase Tumour
+1900,Brain Metastase Tumour
+1903,Glioma
+1908,Brain Metastase Tumour
+1909,Brain Metastase Tumour
+1935,Brain Metastase Tumour
+1937,Brain Metastase Tumour
+1951,Brain Metastase Tumour
+1954,Glioma
+1957,Glioma
+1983,Pineal tumour and Choroid plexus tumour
+1990,Glioma
+1991,Glioma
+1998,Tumors of the sellar region
+1999,Tumors of the sellar region
+2006,Tumors of the sellar region
+2008,Tumors of the sellar region
+2009,Tumors of the sellar region
+2012,Tumors of the sellar region
+2022,Tumors of the sellar region
+2023,Tumors of the sellar region
+2024,Tumors of the sellar region
+2027,Glioma
+2033,Tumors of the sellar region
+2052,Meningioma
+2070,Meningioma
+2071,Meningioma
+2073,Meningioma
+2074,Meningioma
+2081,Meningioma
+2082,Meningioma
+2098,Meningioma
+2100,Meningioma
+2104,Meningioma
+2112,Meningioma
+2116,Meningioma
+2119,Meningioma
+2120,Meningioma
+2125,Meningioma
+2126,Meningioma
+2133,Meningioma
+2136,Meningioma
+2139,Glioma
+2155,Meningioma
+2168,Meningioma
+2169,Meningioma
+2170,Meningioma
+2173,Meningioma
+2176,Glioma
+2180,Glioma
+2181,Glioma
+2183,Glioma
+2191,Glioma
+2192,Glioma
+2198,Glioma
+2199,Glioma
+2208,Glioma
+2210,Glioma
+2220,Glioma
+2225,Glioma
+2239,Glioma
+2248,Glioma
+2249,Brain Metastase Tumour
+2250,Glioma
+2254,Glioma
+2264,Glioma
+2276,Glioma
+2279,Glioma
+2292,Glioma
+2298,Brain Metastase Tumour
+2302,Glioma
+2305,Meningioma
+2310,Brain Metastase Tumour
+2332,Brain Metastase Tumour
+2338,Glioma
+2342,Brain Metastase Tumour
+2347,Brain Metastase Tumour
+2356,Tumors of the sellar region
+2369,Meningioma
+2375,Meningioma
+2377,Meningioma
+2382,Meningioma
+2387,Meningioma
+2391,Meningioma
+2392,Meningioma
+2395,Meningioma
+2403,Meningioma
+2407,Meningioma
+2409,Meningioma
+2410,Meningioma
+2413,Meningioma
+2415,Meningioma
+2419,Meningioma
+2426,Meningioma
+2430,Glioma
+2434,Meningioma
+2435,Meningioma
+2464,Glioma
+2470,Glioma
+2475,Meningioma
+2479,Meningioma
+2484,Meningioma
+2492,Meningioma
+2493,Meningioma
+2497,Meningioma
+2510,Meningioma
+2511,Meningioma
+2515,Meningioma
+2516,Meningioma
+2522,Meningioma
+2533,Meningioma
+2543,Meningioma
+2544,Meningioma
+2545,Meningioma
+2547,Tumors of the sellar region
+2553,Meningioma
+2565,Meningioma
+2578,Glioma
+2585,Pineal tumour and Choroid plexus tumour
+2606,Glioma
+2609,Glioma
+2612,Glioma
+2616,Glioma
+2619,Glioma
+2624,Glioma
+2625,Glioma
+2626,Glioma
+2629,Glioma
+2630,Glioma
+2639,Glioma
+2643,Glioma
+2645,Glioma
+2647,Meningioma
+2648,Glioma
+2654,Brain Metastase Tumour
+2656,Glioma
+2657,Glioma
+2659,Glioma
+2662,Glioma
+2669,Glioma
+2674,Glioma
+2676,Glioma
+2678,Glioma
+2690,Brain Metastase Tumour
+2700,Glioma
+2708,Glioma
+2711,Brain Metastase Tumour
+2724,Glioma
+2727,Glioma
+2731,Glioma
+2733,Glioma
+2736,Glioma
+2742,Tumors of the sellar region
+2745,Glioma
+2754,Glioma
+2765,Glioma
+2769,Glioma
+2771,Glioma
+2780,Glioma
+2782,Glioma
+2802,Glioma
+2807,Glioma
+2818,Glioma
+2819,Glioma
+2825,Glioma
+2826,Glioma
+2830,Glioma
+2833,Glioma
+2836,Glioma
+2837,Glioma
+2839,Glioma
+2841,Glioma
+2843,Glioma
+2845,Glioma
+2846,Glioma
+2849,Meningioma
+2850,Glioma
+2851,Glioma
+2858,Brain Metastase Tumour
+2859,Meningioma
+2866,Brain Metastase Tumour
+2867,Meningioma
+2874,Brain Metastase Tumour
+2878,Brain Metastase Tumour
+2884,Glioma
+2889,Brain Metastase Tumour
+2895,Meningioma
+2896,Brain Metastase Tumour
+2907,Brain Metastase Tumour
+2909,Brain Metastase Tumour
+2912,Brain Metastase Tumour
+2914,Brain Metastase Tumour
+2917,Brain Metastase Tumour
+2921,Glioma
+2925,Glioma
+2930,Pineal tumour and Choroid plexus tumour
+2934,Pineal tumour and Choroid plexus tumour
+2936,Pineal tumour and Choroid plexus tumour
+2937,Pineal tumour and Choroid plexus tumour
+2938,Glioma
+2943,Tumors of the sellar region
+2944,Tumors of the sellar region
+2950,Meningioma
