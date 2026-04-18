@@ -6,24 +6,24 @@ case_id,Overall_class
 11209618,Brain Metastase Tumour
 11333692,Glioma
 11521045,Glioma
-11775475,Glioma
+11775475,Brain Metastase Tumour
 12255903,Tumors of the sellar region
 12568593,Glioma
 12722481,Glioma
-13014999,Glioma
+13014999,Brain Metastase Tumour
 13548568,Meningioma
 13695297,Glioma
-14512566,Brain Metastase Tumour
+14512566,Glioma
 14519210,Glioma
 14524495,Glioma
 15187707,Glioma
-15431805,Glioma
+15431805,Meningioma
 15991316,Meningioma
 16366915,Glioma
-16540348,Glioma
+16540348,Tumors of the sellar region
 17003231,Glioma
 17137459,Glioma
-17605822,Glioma
+17605822,Brain Metastase Tumour
 18622030,Glioma
 18740335,Brain Metastase Tumour
 18850200,Meningioma
@@ -40,7 +40,7 @@ case_id,Overall_class
 22477403,Brain Metastase Tumour
 22620146,Glioma
 22694077,Brain Metastase Tumour
-22789768,Glioma
+22789768,Tumors of the sellar region
 23118102,Glioma
 23479441,Meningioma
 23526108,Meningioma
@@ -50,7 +50,7 @@ case_id,Overall_class
 24546628,Meningioma
 24550484,Brain Metastase Tumour
 24553013,Tumors of the sellar region
-24618132,Brain Metastase Tumour
+24618132,Meningioma
 24747144,Brain Metastase Tumour
 24825387,Glioma
 25015329,Glioma
@@ -59,51 +59,51 @@ case_id,Overall_class
 26902526,Glioma
 27110162,Glioma
 27231198,Glioma
-27288771,Glioma
+27288771,Meningioma
 27339969,Glioma
-27468237,Brain Metastase Tumour
+27468237,Glioma
 27833593,Meningioma
 27945397,Glioma
 28144315,Tumors of the sellar region
 28238234,Meningioma
 28308522,Glioma
 28866491,Glioma
-29002089,Glioma
+29002089,Brain Metastase Tumour
 29257284,Brain Metastase Tumour
 29743953,Meningioma
 29942251,Meningioma
 30036205,Glioma
 30148620,Glioma
 30522429,Meningioma
-30665691,Brain Metastase Tumour
+30665691,Glioma
 30712273,Glioma
 30953500,Meningioma
 31153407,Tumors of the sellar region
 31210648,Glioma
 31644677,Glioma
-31765920,Brain Metastase Tumour
+31765920,Glioma
 31925807,Meningioma
 32574958,Glioma
-32718765,Meningioma
+32718765,Brain Metastase Tumour
 33131440,Glioma
 33250641,Meningioma
 33662318,Glioma
 33675121,Glioma
 33917415,Meningioma
 33927709,Meningioma
-34013309,Glioma
+34013309,Brain Metastase Tumour
 34123445,Glioma
 34771243,Brain Metastase Tumour
-35095666,Brain Metastase Tumour
+35095666,Glioma
 35429836,Glioma
 35445958,Glioma
-35577584,Glioma
+35577584,Meningioma
 35771721,Glioma
 35936174,Meningioma
-36196237,Brain Metastase Tumour
+36196237,Meningioma
 36224165,Meningioma
 36675618,Meningioma
-36715869,Brain Metastase Tumour
+36715869,Glioma
 36995376,Brain Metastase Tumour
 37029913,Brain Metastase Tumour
 37123587,Meningioma
@@ -111,7 +111,7 @@ case_id,Overall_class
 38438052,Glioma
 39015233,Glioma
 39482819,Brain Metastase Tumour
-39651657,Meningioma
+39651657,Glioma
 39738607,Brain Metastase Tumour
 40283017,Glioma
 40385884,Glioma
@@ -127,17 +127,17 @@ case_id,Overall_class
 41234518,Brain Metastase Tumour
 41350120,Meningioma
 41824389,Glioma
-42217506,Glioma
+42217506,Meningioma
 42351236,Glioma
 42493614,Meningioma
-42505926,Glioma
+42505926,Brain Metastase Tumour
 43135142,Meningioma
 43757480,Meningioma
 44008092,Glioma
 44026447,Meningioma
-44374855,Meningioma
+44374855,Glioma
 44630917,Tumors of the sellar region
-44849607,Meningioma
+44849607,Glioma
 44975159,Meningioma
 45076822,Glioma
 45211259,Meningioma
@@ -145,14 +145,14 @@ case_id,Overall_class
 45827977,Glioma
 46033262,Glioma
 46195722,Glioma
-46243805,Meningioma
+46243805,Glioma
 46304009,Meningioma
 46410981,Meningioma
 46552328,Meningioma
 46660138,Glioma
 46792763,Meningioma
 47654736,Glioma
-47735202,Glioma
+47735202,Meningioma
 48100175,Meningioma
 48106392,Brain Metastase Tumour
 48124745,Brain Metastase Tumour
@@ -165,13 +165,13 @@ case_id,Overall_class
 50337694,Glioma
 50382422,Meningioma
 50430585,Brain Metastase Tumour
-50555343,Glioma
+50555343,Brain Metastase Tumour
 50584691,Meningioma
 50935556,Meningioma
 51159567,Tumors of the sellar region
 51734049,Meningioma
-51852885,Glioma
-52088023,Brain Metastase Tumour
+51852885,Meningioma
+52088023,Glioma
 52398407,Tumors of the sellar region
 52560553,Glioma
 52757499,Glioma
@@ -181,13 +181,13 @@ case_id,Overall_class
 54338811,Meningioma
 54603074,Brain Metastase Tumour
 54997247,Glioma
-55177210,Glioma
-55809628,Glioma
-55889421,Brain Metastase Tumour
+55177210,Brain Metastase Tumour
+55809628,Brain Metastase Tumour
+55889421,Glioma
 56793596,Glioma
 57084223,Meningioma
 57243349,Glioma
-57776819,Glioma
+57776819,Tumors of the sellar region
 57844616,Meningioma
 57943888,Meningioma
 58120651,Meningioma
@@ -198,8 +198,8 @@ case_id,Overall_class
 59328962,Glioma
 59548815,Glioma
 59784639,Glioma
-60115608,Glioma
-60732597,Meningioma
+60115608,Tumors of the sellar region
+60732597,Brain Metastase Tumour
 60865369,Meningioma
 61600329,Meningioma
 61965729,Glioma
@@ -207,7 +207,7 @@ case_id,Overall_class
 63418663,Glioma
 63495002,Meningioma
 63750368,Meningioma
-63868800,Tumors of the sellar region
+63868800,Meningioma
 63979931,Glioma
 64049305,Meningioma
 64086034,Glioma
@@ -219,7 +219,7 @@ case_id,Overall_class
 65395499,Meningioma
 65419391,Glioma
 65937316,Meningioma
-66122836,Glioma
+66122836,Meningioma
 66330794,Brain Metastase Tumour
 66368932,Meningioma
 66386871,Meningioma
@@ -244,7 +244,7 @@ case_id,Overall_class
 70980346,Meningioma
 71183320,Glioma
 71304497,Meningioma
-71377694,Meningioma
+71377694,Brain Metastase Tumour
 71643913,Glioma
 71855628,Glioma
 72134629,Glioma
@@ -255,7 +255,7 @@ case_id,Overall_class
 74280040,Brain Metastase Tumour
 74577972,Glioma
 74592965,Meningioma
-74618675,Glioma
+74618675,Brain Metastase Tumour
 74669260,Glioma
 74677725,Glioma
 75166641,Tumors of the sellar region
@@ -270,7 +270,7 @@ case_id,Overall_class
 77410101,Glioma
 77444008,Glioma
 77511882,Meningioma
-77850007,Tumors of the sellar region
+77850007,Glioma
 78136042,Glioma
 78212032,Meningioma
 79521946,Pineal tumour and Choroid plexus tumour
@@ -279,16 +279,16 @@ case_id,Overall_class
 80049082,Meningioma
 80086936,Meningioma
 80161411,Tumors of the sellar region
-80168520,Glioma
-80248805,Brain Metastase Tumour
+80168520,Meningioma
+80248805,Glioma
 80345733,Meningioma
 80411636,Glioma
-80713931,Meningioma
+80713931,Glioma
 80923083,Glioma
 81591230,Meningioma
 81667861,Glioma
 81716256,Brain Metastase Tumour
-82276674,Tumors of the sellar region
+82276674,Glioma
 82320873,Glioma
 82451434,Glioma
 82621530,Brain Metastase Tumour
@@ -299,7 +299,7 @@ case_id,Overall_class
 83829611,Glioma
 85207004,Meningioma
 85217073,Glioma
-85298506,Meningioma
+85298506,Glioma
 85925015,Brain Metastase Tumour
 85962410,Glioma
 86026592,Glioma
@@ -307,50 +307,50 @@ case_id,Overall_class
 86241431,Glioma
 86529838,Glioma
 86826167,Glioma
-86833808,Meningioma
+86833808,Glioma
 86917239,Meningioma
 87129038,Glioma
 87263337,Glioma
 87273736,Glioma
-87898515,Brain Metastase Tumour
-88405261,Tumors of the sellar region
+87898515,Glioma
+88405261,Meningioma
 88417614,Meningioma
 88557360,Glioma
 88989607,Brain Metastase Tumour
 89105883,Meningioma
 89263381,Glioma
-89499489,Glioma
+89499489,Brain Metastase Tumour
 89533466,Glioma
 89624905,Glioma
 89866348,Meningioma
 90206883,Glioma
 90333027,Meningioma
-90382257,Brain Metastase Tumour
+90382257,Glioma
 90464672,Pineal tumour and Choroid plexus tumour
 90590444,Meningioma
 90707647,Glioma
-90761532,Brain Metastase Tumour
+90761532,Meningioma
 90761996,Meningioma
 90769970,Glioma
 90969943,Meningioma
-91061652,Meningioma
+91061652,Glioma
 91570742,Tumors of the sellar region
-91654088,Glioma
+91654088,Brain Metastase Tumour
 91693217,Glioma
 92164256,Tumors of the sellar region
 92261663,Glioma
 92337722,Glioma
 92482935,Glioma
 92495214,Meningioma
-92668476,Brain Metastase Tumour
+92668476,Glioma
 92827842,Pineal tumour and Choroid plexus tumour
-93139941,Glioma
+93139941,Brain Metastase Tumour
 93321729,Brain Metastase Tumour
 93369907,Glioma
 93602485,Glioma
 93772141,Glioma
 94215876,Tumors of the sellar region
-94269340,Meningioma
+94269340,Glioma
 94883159,Meningioma
 94902355,Brain Metastase Tumour
 95033038,Glioma
@@ -360,11 +360,11 @@ case_id,Overall_class
 95465526,Glioma
 95958738,Meningioma
 96555616,Glioma
-97732840,Glioma
+97732840,Meningioma
 97831345,Meningioma
 97886937,Glioma
 97900769,Glioma
-97949419,Brain Metastase Tumour
+97949419,Glioma
 98039948,Glioma
 98533985,Meningioma
 98554409,Glioma
