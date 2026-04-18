@@ -1,0 +1,9 @@
+# Notebook stack (pipeline_macro_0418): pip install -r requirements-notebook.txt
+torch>=2.0
+xgboost
+lightgbm
+scikit-learn
+pandas
+numpy
+matplotlib
+seaborn
