@@ -17,27 +17,22 @@ STAT3612-Amateur-Neuro-Team/
 │── 1. proposal_draft.docx               ← Proposal export (Word, for submission)
 │── STAT3612_project-2026_Updated.pdf    ← Course project description
 │
-├── notebooks/
-│   └── full_pipeline.ipynb              ← Main notebook (end-to-end pipeline)
+├── dataset/                             ← Competition data layout（说明见 dataset/README.md）
+│   ├── README.md                        ← 如何放置 train/val 与 test、目录约定
+│   ├── kaggle-dataset/                  ← train.json, val.json 与训练/验证侧多模态文件
+│   └── new_test/                        ← test.json、sample_submission 与测试侧文件（可与上者分开发布）
 │
-├── kaggle-dataset/                      ← Competition data (not committed to Git)
-│   ├── train.json / val.json / test.json    ← Metadata + labels (train/val only)
-│   ├── sample_submission.csv                ← Kaggle submission template
-│   ├── image_features/                      ← ResNet deep features (.npy, 2048-d)
-│   │   └── image_features/<case_id>/<modality>/image.npy
-│   ├── radiomics_info/                      ← PyRadiomics features (CSV, 5 per modality)
-│   │   ├── train/ val/ test/
-│   │   └── README.md                        ← Feature descriptions
-│   ├── clinical_information/                ← Demographics + report-derived fields (CSV)
-│   │   └── {train,val,test}_patient_info.csv
-│   └── original_raw_report/                 ← Raw radiology report text (CSV)
-│       └── {train,val,test}_patient_info.csv
+├── notebooks/
+│   ├── pipeline_macro.ipynb             ← 主流程（Macro-F1 对齐排行榜）
+│   └── pipeline_micro.ipynb             ← 同上，指标为 Micro-F1
 │
 └── baseline_backup/                     ← Historical backups (not for submission)
     ├── brain_tumor_pipeline.ipynb
     ├── project_pipeline_backup.ipynb
     └── ...
 ```
+
+**可选（旧版单目录）**：若把全部 split 解压到同一文件夹，也可使用仓库根目录下的 `kaggle-dataset/`（内含 `train.json` / `val.json` / `test.json` 并列）；notebook 会自动识别 `dataset/kaggle-dataset` 或 `kaggle-dataset`。
 
 ## Quick Start
 
@@ -49,42 +44,45 @@ cd STAT3612-Amateur-Neuro-Team
 # 2. Install dependencies
 pip install pandas numpy scikit-learn matplotlib seaborn xgboost lightgbm jupyter
 
-# 3. Run the pipeline
-jupyter notebook notebooks/full_pipeline.ipynb
+# 3. 按 dataset/README.md 放置 Kaggle/课程提供的解压数据
+
+# 4. Run the pipeline
+jupyter notebook notebooks/pipeline_macro.ipynb
 ```
 
-The notebook auto-detects the `kaggle-dataset/` folder regardless of working directory.
+Pipeline notebook 会从当前工作目录向上查找 **`dataset/kaggle-dataset/train.json`**，并在同级 **`dataset/new_test/test.json`** 存在时自动作为测试数据根目录（无需手动改路径）。
 
 ## Pipeline Overview
 
-The notebook (`full_pipeline.ipynb`) follows a three-stage pipeline aligned with the proposal:
+主 notebook（`pipeline_macro.ipynb` / `pipeline_micro.ipynb`）对应提案中的阶段划分如下：
 
 | Section | Purpose |
 |---|---|
-| **0. EDA** | Class imbalance (40:1), multimodal incompleteness (~20%), missing demographics |
-| **1. Feature Engineering** | Load 4 modalities → PCA → standardize → 800-d fused vector |
-| **2. Stage 1: Single-Modality Baselines** | Per-modality classifiers to measure individual contributions |
-| **3. Stage 2: Multimodal Fusion** | Early fusion (concatenated features) vs Late fusion (voting/stacking) |
-| **4. Stage 3: Optimization** | Feature selection, class imbalance (SMOTE), hyperparameter tuning *(TODO)* |
-| **5. Model Analysis** | Model comparison, modality ablation, interpretability *(SHAP TODO)* |
+| **0. EDA** | Class imbalance, multimodal incompleteness, missing demographics |
+| **1. Feature Engineering** | Load 4 modalities → PCA → standardize → fused vector |
+| **2. Stage 1: Single-Modality Baselines** | Per-modality classifiers |
+| **3. Stage 2: Multimodal Fusion** | Early vs late fusion |
+| **4. Stage 3: Optimization** | Feature selection, imbalance *(optional / TODO)* |
+| **5. Model Analysis** | Comparison, ablation *(SHAP TODO)* |
 | **6. Submission** | Generate `submission.csv` for Kaggle |
 
 ## Data Modalities
 
 | Modality | Source | Dimensions | Notes |
 |---|---|---|---|
-| Deep image features | `image_features/` | 2048 × 4 sequences | ResNet; zero-padded if modality missing |
+| Deep image features | `image_features/` | 2048 × 4 sequences | Zero-padded if modality missing |
 | Radiomics | `radiomics_info/` | 5 × 4 sequences = 20 | PyRadiomics; fillna(0) for missing |
 | Clinical | `clinical_information/` | 24 | Sex, Age, signal intensities, location keywords |
-| Text | `original_raw_report/` + JSON `report` | TF-IDF 500 | Radiology findings (impression excluded) |
+| Text | JSON `report` | TF-IDF 500 | Radiology findings |
 
 ## Key Files
 
 | File | Purpose |
 |---|---|
+| `dataset/README.md` | 数据目录结构与放置步骤 |
 | `1. proposal_draft.md` | Project proposal (submit as PDF) |
-| `notebooks/full_pipeline.ipynb` | Reproducible pipeline (submit as final notebook) |
-| `kaggle-dataset/sample_submission.csv` | Submission format template |
+| `notebooks/pipeline_macro.ipynb` | Reproducible pipeline |
+| `dataset/new_test/sample_submission.csv` 或 `dataset/kaggle-dataset/sample_submission.csv` | Submission template |
 
 ## References
 
