@@ -14,8 +14,9 @@ STAT3612-Amateur-Neuro-Team/
 │
 │── 0. proposal_workflow.md              ← Internal team workflow & division of labor
 │── 1. proposal_draft.md                 ← Proposal source (Markdown)
-│── 1. proposal_draft.docx               ← Proposal export (Word, for submission)
-│── STAT3612_project-2026_Updated.pdf    ← Course project description
+│── report_draft.md                      ← Draft report notes
+│── report_final.md                      ← Final report markdown
+│── requirements-notebook.txt            ← Notebook dependencies
 │
 ├── dataset/                             ← Competition data layout（说明见 dataset/README.md）
 │   ├── README.md                        ← 如何放置 train/val 与 test、目录约定
@@ -23,13 +24,11 @@ STAT3612-Amateur-Neuro-Team/
 │   └── new_test/                        ← test.json、sample_submission 与测试侧文件（可与上者分开发布）
 │
 ├── notebooks/
-│   ├── pipeline_macro.ipynb             ← 主流程（Macro-F1 对齐排行榜）
-│   └── pipeline_micro.ipynb             ← 同上，指标为 Micro-F1
-│
-└── baseline_backup/                     ← Historical backups (not for submission)
-    ├── brain_tumor_pipeline.ipynb
-    ├── project_pipeline_backup.ipynb
-    └── ...
+│   ├── pipeline_0420.ipynb              ← 当前主流程（推荐运行）
+│   ├── pipeline_macro_0418.ipynb        ← 旧版主流程快照
+│   ├── pipeline_macro.ipynb             ← 旧版 Macro-F1 流程
+│   ├── pipeline_micro.ipynb             ← 旧版 Micro-F1 流程
+│   └── submission.csv                   ← 当前导出的提交文件
 ```
 
 **可选（旧版单目录）**：若把全部 split 解压到同一文件夹，也可使用仓库根目录下的 `kaggle-dataset/`（内含 `train.json` / `val.json` / `test.json` 并列）；notebook 会自动识别 `dataset/kaggle-dataset` 或 `kaggle-dataset`。
@@ -42,29 +41,35 @@ git clone https://github.com/SunnieShen/STAT3612-Amateur-Neuro-Team.git
 cd STAT3612-Amateur-Neuro-Team
 
 # 2. Install dependencies
-pip install pandas numpy scikit-learn matplotlib seaborn xgboost lightgbm jupyter
+pip install -r requirements-notebook.txt
+pip install pandas matplotlib seaborn imbalanced-learn jupyter
 
 # 3. 按 dataset/README.md 放置 Kaggle/课程提供的解压数据
 
-# 4. Run the pipeline
-jupyter notebook notebooks/pipeline_macro.ipynb
+# 4. Run the pipeline (current)
+jupyter notebook notebooks/pipeline_0420.ipynb
 ```
 
-Pipeline notebook 会从当前工作目录向上查找 **`dataset/kaggle-dataset/train.json`**，并在同级 **`dataset/new_test/test.json`** 存在时自动作为测试数据根目录（无需手动改路径）。
+`pipeline_0420.ipynb` 会自动查找数据目录：
+- 优先在当前目录或上级目录定位 `dataset/kaggle-dataset/train.json` + `val.json`（也兼容单目录 `kaggle-dataset/`）。
+- 测试集会自动识别 `train/val` 同目录下的 `test.json`，或兄弟目录 `dataset/new_test/test.json`。
+- 也可通过环境变量显式指定（如 `STAT3612_TRAIN_VAL_DIR`）。
 
 ## Pipeline Overview
 
-主 notebook（`pipeline_macro.ipynb` / `pipeline_micro.ipynb`）对应提案中的阶段划分如下：
+当前主 notebook（`pipeline_0420.ipynb`）对应提案中的阶段划分如下：
 
 | Section | Purpose |
 |---|---|
-| **0. EDA** | Class imbalance, multimodal incompleteness, missing demographics |
-| **1. Feature Engineering** | Load 4 modalities → PCA → standardize → fused vector |
+| **0. Setup & EDA** | Environment check, split loading, class imbalance, multimodal incompleteness |
+| **1. Feature Engineering** | Load 4 modalities → image PCA (256) → standardize → fused vector |
 | **2. Stage 1: Single-Modality Baselines** | Per-modality classifiers |
 | **3. Stage 2: Multimodal Fusion** | Early vs late fusion |
-| **4. Stage 3: Optimization** | Feature selection, imbalance *(optional / TODO)* |
-| **5. Model Analysis** | Comparison, ablation *(SHAP TODO)* |
+| **4. Stage 3: Optimization** | Feature selection / PCA sweep / SVM & XGB tuning / imbalance strategies |
+| **5. Model Analysis** | Model comparison, confusion matrix, modality ablation, feature importance |
 | **6. Submission** | Generate `submission.csv` for Kaggle |
+
+> 评估指标：主指标为 **Macro-F1**（与 Kaggle 多分类 F1 排行一致），辅指标包括 Weighted-F1 / Accuracy / per-class metrics。
 
 ## Data Modalities
 
@@ -81,8 +86,10 @@ Pipeline notebook 会从当前工作目录向上查找 **`dataset/kaggle-dataset
 |---|---|
 | `dataset/README.md` | 数据目录结构与放置步骤 |
 | `1. proposal_draft.md` | Project proposal (submit as PDF) |
-| `notebooks/pipeline_macro.ipynb` | Reproducible pipeline |
+| `notebooks/pipeline_0420.ipynb` | 当前可复现实验主流程 |
+| `notebooks/pipeline_macro.ipynb` / `notebooks/pipeline_micro.ipynb` | 旧版流程备份 |
 | `dataset/new_test/sample_submission.csv` 或 `dataset/kaggle-dataset/sample_submission.csv` | Submission template |
+| `notebooks/submission.csv` | `pipeline_0420.ipynb` 默认输出的提交文件 |
 
 ## References
 
