@@ -15,8 +15,10 @@ The project addresses three main technical challenges. First, Extreme Class Imb
 Second, Multimodal Incompleteness mirrors clinical reality, with nearly 20% of cases missing a modality. Instead of discarding these samples—which would bias the model—we use zero-padding to maintain sample size and consistency (Soenksen et al., 2022).
 
 Third, Cross-modality Heterogeneity presents a fusion challenge. The data comes from vastly different feature spaces: high-dimensional visual embeddings (ResNet; He et al., 2016), radiomics descriptors, categorical clinical variables, and sparse TF-IDF text vectors. Our three-stage pipeline is designed to fuse these heterogeneous inputs without losing discriminative signals.
+
 #### **2.4 Report Roadmap**
-The report is organized to follow our development workflow. Section 3 performs exploratory data analysis on class and modality distributions. Section 4 details feature engineering, including PCA-based dimensionality reduction for image embeddings. Section 5 establishes single-modality baselines to quantify independent predictive power. Section 6 presents multimodal fusion strategies, comparing early concatenation against late fusion via stacking and voting. Section 7 describes the optimization process, covering L1-based feature selection and imbalance mitigation. Section 8 provides model analysis, including feature importance and error analysis, followed by a discussion of limitations in Section 9.
+
+The remainder of this report follows our development workflow. Section 3 performs exploratory data analysis on class and modality distributions. Section 4 details feature engineering, including PCA-based dimensionality reduction for image embeddings. Section 5 establishes single-modality baselines to quantify independent predictive power. Section 6 presents multimodal fusion strategies, comparing early concatenation against late fusion via stacking and voting. Section 7 describes the optimization process, covering L1-based feature selection and imbalance mitigation. Section 8 reports ablation experiments that quantify each modality's contribution to overall performance. Section 9 provides model interpretability analysis, including feature importance and per-class error breakdowns. Section 10 discusses limitations and concludes.
 
 ### 3. Exploratory Data Analysis
 
@@ -58,3 +60,49 @@ These pairs are effectively measuring the same signal. Including both inflates t
 #### 3.5 Summary
 
 Four findings, four decisions. The 40:1 class imbalance set Macro-F1 as our evaluation metric and put imbalance mitigation on the Stage 3 agenda. The 20% modality missing rate led to zero-padding rather than sample removal. The demographic analysis confirmed that age and sex carry genuine discriminative signal and are worth recovering from the CSV source despite high missingness. The radiomics redundancy flagged four feature pairs for removal before fusion. Each modeling choice in the sections that follow traces back to something we found here first.
+
+### **4. Feature Engineering**
+
+Each of the four modalities in this dataset arrives in a completely different form: raw MRI pixel arrays, tabular radiomics statistics, structured clinical records, and free-text radiology reports. Table 1 summarises the four pipelines and their final dimensions.
+
+**Table 1** _Feature dimensions after processing_
+
+|    Modality      |          Raw Dimension          | Processed Dimension |         Key Operation          |
+| ---------------- | ------------------------------- | ------------------- | ------------------------------ |
+| Image (ResNet)   | 2,048-d × 4 sequences = 8,192-d | 256-d               | PCA                            |
+| Radiomics        | 5 features × 4 sequences = 20-d | 20-d                | NaN → 0                        |
+| Clinical         | 24 fields (CSV)                 | 24-d                | Imputation for Age             |
+| Text (TF-IDF)    | Radiology reports               | 500-d               | Unigrams + bigrams             |
+| **Early Fusion** | —                               | **800-d**           | Concatenation + StandardScaler |
+
+#### **4.1 Image Features**
+
+We used a pre-trained ResNet (He et al., 2016) to extract 2,048-dimensional feature vectors from each MRI sequence, resulting in 8,192 features per case. At this dimensionality, the feature space becomes too sparse for kernel distances to remain meaningful. Points that are genuinely dissimilar appear almost equidistant, breaking the geometry that SVM and other distance-based models rely on. Dimensionality reduction is therefore a prerequisite, not an option.
+
+We applied PCA to this matrix, retaining 256 components (92.2% variance). Figure 6 shows that the cumulative explained variance curve flattens significantly beyond 256 components, indicating diminishing returns for additional dimensions. We later tested 128 and 512 components in Stage 3 to verify the optimal trade-off. For cases with missing sequences, we zero-padded the corresponding 2,048-d block before stacking, preserving the full training set.
+
+![[fig6_pca_variance.png]]
+
+#### **4.2 Radiomics Features**
+
+PyRadiomics extracts five handcrafted texture statistics from each MRI sequence: first-order Mean, Entropy, and 90th Percentile, plus two GLCM measures — Contrast and JointEntropy. Across four sequences, this yields 20 features per case. Unlike image features, radiomics operate at a much lower dimension and do not require reduction.
+
+Missing radiomics values — which occur when a scan is absent — were filled with zero, consistent with our zero-padding strategy for image features (Soenksen et al., 2022). As noted in Section 3.4, four of these 20 features are highly correlated (r > 0.95): Entropy and JointEntropy carry nearly identical information within each modality. We kept all 20 features in the base pipeline and tested de-correlation as a Stage 3 optimisation.
+
+#### **4.3 Clinical Features**
+
+The clinical CSV provides 24 structured fields per patient, covering demographics (Age, Sex), tumour location, and treatment history. We used this file as the primary source for demographic data rather than the JSON metadata, where 69.6% of Age and Sex fields are blank (see Section 3.3).
+
+Age was missing for 69.8% of training cases in the CSV. Rather than discarding these patients, missing Age values were imputed during preprocessing to retain the full training set. Sex, complete for all 1,983 training cases, required no imputation. Both were retained as part of the 24-dimensional clinical feature vector.
+
+#### **4.4 Text Features**
+
+Each case includes a radiology report stored in the JSON metadata. We extracted the `finding` and `impression` fields — the sections containing the radiologist's observations and conclusions — and concatenated them into a single text string per patient. Where these fields were absent, all available report fields were concatenated as a fallback.
+
+We then fitted a TF-IDF vectoriser (Salton & Buckley, 1988) on the training corpus, keeping the top 500 terms by document frequency and including both unigrams and bigrams (e.g., "ring enhancement", "mass effect"). Terms appearing in fewer than three training documents were discarded to avoid fitting on idiosyncratic phrasing. The result is a 500-dimensional sparse vector encoding the vocabulary patterns most distinctive to each report type. As Stage 1 results later show, text turns out to be the most informative single modality — its strong performance there motivates keeping all 500 features in the fused vector rather than truncating further.
+
+#### **4.5 Early Fusion**
+
+We concatenated the four processed feature vectors — 256-d image, 20-d radiomics, 24-d clinical, 500-d text — into an 800-dimensional representation for each case. This early fusion strategy treats all modalities symmetrically: every feature enters the same model, and the model learns which combinations matter.
+
+All 800 features were standardised with a StandardScaler fitted on the training set and applied to validation and test sets separately, ensuring no information from unseen data influences the scaling. Class weights — ranging from 0.43 for Glioma to 17.24 for Pineal/Choroid plexus tumour — were passed to each classifier during training to counteract the 40:1 imbalance described in Section 3.1.
