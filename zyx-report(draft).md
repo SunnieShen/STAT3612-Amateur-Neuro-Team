@@ -21,7 +21,7 @@ The report is organized to follow our development workflow. Section 3 performs e
 ### 3. Exploratory Data Analysis
 
 In this section, we examine the multimodal dataset to identify patterns and anomalies that directly inform our preprocessing and modeling decisions. Figure 1 illustrates how each finding connects to the subsequent pipeline stages.
-
+https://github.com/SunnieShen/STAT3612-Amateur-Neuro-Team/blob/main/eda_flowchart.png?raw=true
 ![[eda_flowchart.png]]
 #### 3.1 Class Distribution
 
