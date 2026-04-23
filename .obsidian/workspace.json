@@ -11,14 +11,10 @@
             "id": "fd274e79fe997a9f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "0. proposal_workflow.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "0. proposal_workflow"
+              "title": "新标签页"
             }
           }
         ]
@@ -78,7 +74,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "75b8a0e419714c79",
@@ -185,6 +182,25 @@
   },
   "active": "fd274e79fe997a9f",
   "lastOpenFiles": [
+    "zyx-report(draft).md",
+    "report/zyx-report(draft).md",
+    "report/report_final.md",
+    "report/report_draft.md",
+    "report/fig6_pca_variance.png",
+    "report/fig5_radiomics_corr.png",
+    "report/fig4_demographics.png",
+    "report/fig3_modality.png",
+    "report/fig2_class_dist.png",
+    "report/eda_flowchart.png",
+    "report",
+    "未命名文件夹",
+    "proposal/proposal-Amateur-Neuro-Team.pdf",
+    "proposal/1. proposal_draft.md",
+    "proposal/1. proposal_draft.docx",
+    "proposal/0. proposal_workflow.md",
+    "proposal",
+    "README.md",
+    "0. proposal_workflow.md",
     "0. proposal_workflow.pdf",
     "kaggle-dataset/README.md",
     "README.pdf"
