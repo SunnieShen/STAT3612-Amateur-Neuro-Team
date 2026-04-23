@@ -5,56 +5,67 @@ This project develops a statistical machine learning framework for the presurgic
 ### 2. Introduction
 
 #### 2.1 Background and Clinical Significance
+
 Accurate presurgical classification of brain tumor subtypes is a critical determinant of neurosurgical strategy and patient prognosis. The five subtypes addressed in this study—Glioma, Meningioma, Brain Metastase Tumour, Tumors of the sellar region, and Pineal tumour and Choroid plexus tumour—vary substantially in their biological behavior and recommended treatment pathways (Price et al., 2024). For instance, while gliomas typically require maximal safe surgical resection combined with adjuvant chemoradiotherapy, meningiomas may be managed conservatively, and brain metastases often necessitate systemic treatment targeting the primary malignancy. Therefore, reliable preoperative classification is pivotal for guiding clinical decisions and avoiding unnecessary interventions.
 
 In routine practice, radiologists synthesize multi-sequence MRI findings with patient demographics. However, manual interpretation remains challenging due to overlapping imaging characteristics and inter-observer variability (Wang et al., 2024). Automating this process via statistical machine learning offers a data-driven reference to reduce diagnostic uncertainty in complex presurgical planning.
 
 #### 2.2 Dataset Overview
+
 We used a curated multimodal dataset from the course Kaggle competition, containing 2,644 accessible cases from a total cohort of 2,838 patients. The data is split into training (1,983 cases, 75.0%), validation (283 cases, 10.7%), and test sets (378 cases, 14.3%). The label distribution is consistent across splits, dominated by Glioma (46.6%) and Meningioma (36.7%), followed by Brain Metastase (12.7%), Sellar region (2.8%), and Pineal/Choroid plexus tumours (1.2%). This confirms that stratified partitioning was effective. Notably, the dataset reflects real-world incompleteness: about 19.7% of training cases lack one imaging modality, and demographic data is missing in 69.6% of JSON records, though we recovered the latter using accompanying clinical CSV files.
 
 #### 2.3 Core Challenges
+
 The project addresses three main technical challenges. First, Extreme Class Imbalance is a major hurdle; the largest class (Glioma) outnumbers the smallest (Pineal/Choroid plexus) by a 40:1 ratio. This makes overall accuracy misleading, as a naive classifier could score well while failing on rare tumors. We therefore use Macro-F1 as the primary metric to ensure equal weighting for all classes (Chicco & Jurman, 2020).
 
 Second, Multimodal Incompleteness mirrors clinical reality, with nearly 20% of cases missing a modality. Instead of discarding these samples—which would bias the model—we use zero-padding to maintain sample size and consistency (Soenksen et al., 2022).
 
 Third, Cross-modality Heterogeneity presents a fusion challenge. The data comes from vastly different feature spaces: high-dimensional visual embeddings (ResNet; He et al., 2016), radiomics descriptors, categorical clinical variables, and sparse TF-IDF text vectors. Our three-stage pipeline is designed to fuse these heterogeneous inputs without losing discriminative signals.
+
 #### 2.4 Report Roadmap
+
  The remainder of this report follows our development workflow. Section 3 performs exploratory data analysis on class and modality distributions. Section 4 details feature engineering, including PCA-based dimensionality reduction for image embeddings. Section 5 establishes single-modality baselines to quantify independent predictive power. Section 6 presents multimodal fusion strategies, comparing early concatenation against late fusion via stacking and voting. Section 7 describes the optimization process,  covering L1, RF importance, and MI-based feature selection  and imbalance mitigation. Section 8 reports ablation experiments that quantify each modality's contribution to overall performance. Section 9 provides model interpretability analysis, including feature importance and per-class error breakdowns. Section 10 discusses limitations and concludes.
  
 ### 3. Exploratory Data Analysis
 
 In this section, we examine the multimodal dataset to identify patterns and anomalies that directly inform our preprocessing and modeling decisions. Figure 1 illustrates how each finding connects to the subsequent pipeline stages.
 
-![[eda_flowchart.png]]
+![替代文本](eda_flowchart.png)
+
 #### 3.1 Class Distribution
 
-![[fig2_class_dist.png]]
+![替代文本](fig2_class_dist.png)
+
 The training set contains 1,983 cases distributed across five classes. Glioma dominates with 924 cases (46.6%), followed by Meningioma (728, 36.7%), Brain Metastase Tumour (252, 12.7%), Tumors of the sellar region (56, 2.8%), and Pineal/Choroid plexus tumour (23, 1.2%). The largest-to-smallest ratio is 40:1.
 
 A model trained naively on this data would learn to predict Glioma by default. It could achieve over 46% accuracy while failing entirely on the rarest classes — which is the worst possible outcome when rare tumor misdiagnosis carries the highest clinical cost. We therefore adopted Macro-F1 as our primary evaluation metric, which treats all five classes equally regardless of size (Chicco & Jurman, 2020). This finding also directly motivated our Stage 3 experiments on imbalance mitigation, where we compared class-weighted training, random oversampling, and SMOTE.
+
 #### 3.2 Modality Completeness
 
-![[fig3_modality 1.png]]
+![替代文本](fig3_modality.png)
 
 About one in five cases across all splits is missing at least one MRI sequence. The test set is more variable — beyond the expected ~21% with one missing modality, 19 cases have two or three sequences absent. This reflects clinical reality: scans get skipped due to patient contraindications, scanner errors, or time pressure.
 
 Discarding these cases was not an option. For minority classes with fewer than 60 training samples, losing even a handful of cases would meaningfully distort the class distribution further. We applied zero-padding to replace missing modality features with zeros, keeping all cases in the pipeline while maintaining consistent input dimensions (Soenksen et al., 2022).
+
 #### 3.3 Patient Demographics by Tumor Subtype
 
 Despite high overall missingness in demographic fields — 69.6% of cases lack recorded Sex and Age in the JSON source — the clinical CSV files provided complete Sex records for all 1,983 training cases, with Age available for a meaningful subset. We analysed the known demographic distributions to understand whether different tumor types present in distinguishable patient populations.
 
-![[fig4_demographics 1.png]]
+![替代文本](fig4_demographics.png)
 
 Age patterns show clear separation across subtypes. Pineal/Choroid plexus tumours present in the youngest patients (mean age 33.8, range 5–66), consistent with their known occurrence in children and young adults. Gliomas span the widest age range (mean 45.3, range 3–76), reflecting the heterogeneous nature of this group. Meningiomas and Brain Metastases tend to appear in older patients, with means of 53.8 and 55.0 respectively. These differences suggest that age carries genuine discriminative signal, particularly for separating the rare pediatric-skewed classes from the adult-dominant majority.
 
 Sex patterns among cases with known values show that Meningioma is disproportionately female (63% female among known cases), a pattern well-established in clinical literature. Glioma and Brain Metastase lean slightly male (56% and 59%). These patterns, while based on a subset of known cases, are consistent with epidemiological expectations and confirm that Sex is a meaningful clinical variable worth retaining in our feature set.
 
 Given the high missingness in both fields, we filled missing Age values with the training-set median and used the CSV as the authoritative source for Sex. Both features were retained as part of the 24-dimensional clinical feature vector.
+
 #### 3.4 Radiomics Feature Redundancy
 
 PyRadiomics extracts five features per MRI sequence — first-order Mean, Entropy, 90th Percentile, GLCM Contrast, and GLCM JointEntropy — giving 20 features across four modalities. We found four highly correlated pairs, all involving Entropy and JointEntropy:
 
-![[fig5_radiomics_corr 2.png]]
+![替代文本](fig5_radiomics_corr.png)
+
 These pairs are effectively measuring the same signal. Including both inflates the feature space without adding information, and distance-based models like SVM are particularly sensitive to this redundancy. We retained all 20 features in the base pipeline and designated de-correlation as one of the tested optimisation strategies in Stage 3.
 
 #### 3.5 Summary
@@ -81,7 +92,8 @@ We used a pre-trained ResNet (He et al., 2016) to extract 2,048-dimensional feat
 
 We applied PCA to this matrix, retaining 256 components (92.2% variance). Figure 6 shows that the cumulative explained variance curve flattens significantly beyond 256 components, indicating diminishing returns for additional dimensions. We later tested 128 and 512 components in Stage 3 to verify the optimal trade-off. For cases with missing sequences, we zero-padded the corresponding 2,048-d block before stacking, preserving the full training set.
 
-![[fig6_pca_variance.png]]
+![替代文本](fig6_pca_variance.png)
+
 
 #### 4.2 Radiomics Features
 
@@ -124,10 +136,10 @@ We used LightGBM as the shared classifier across all four modalities. Compared t
 | Radiomics (20-d)  | 0.2802      | ±0.0336 | 0.2899       | 0.4947       | 0.4821          | 0.6687 |
 | Image (PCA-256)   | 0.2727      | ±0.0084 | 0.2962       | 0.6184       | 0.5793          | 0.7344 |
 
-![[fig7_stage1_summary_corrected.png]]
+![替代文本](fig7_stage1_summary_corrected.png)
 
 
-![[fig8_stage1_confusion.png]]
+![替代文本](fig8_stage1_confusion.png)
 
 #### 5.1 The Surprising Leader: Text
 
@@ -146,6 +158,7 @@ The one failure is Brain Metastase (F1 = 0.565), which is harder to separate on 
 Image features tell a counterintuitive story. The model achieves 61.8% accuracy — which sounds reasonable — but a Macro-F1 of only 0.296 reveals that this comes almost entirely from predicting Glioma and Meningioma correctly. As Table 3a–3c shows, Pineal/Choroid and Sellar both score zero across precision, recall, and F1. The model has learned to separate the two majority classes visually, but the rare classes are entirely invisible to it.
 
 The CV standard deviation of ±0.0084 reflects the realistic fold-to-fold variability once leakage-free feature fitting is enforced. ResNet was pre-trained on ImageNet, not on medical imaging, so its features capture general visual texture and shape rather than the fine-grained morphological differences that distinguish tumour subtypes on MRI. Its AUROC of 0.7344, considerably higher than its Macro-F1 of 0.296, reflects exactly the insensitivity of AUROC to class imbalance: the model ranks the majority classes well in probability space while failing to identify the minority classes at all.
+
 #### 5.4 Radiomics: Weakest Signal
 
 Radiomics performs worst on the held-out validation set (Val Macro-F1 = 0.290), with high fold-to-fold variance (±0.0336) suggesting instability. The texture statistics it encodes are informative for distinguishing tumour from healthy tissue, but not specific enough to separate five distinct subtypes. Like image features, it fails entirely on Pineal/Choroid tumours.
@@ -184,7 +197,7 @@ The complete failure on Pineal/Choroid tumours (F1 = 0.000 for both Image and Ra
 | Pineal/Choroid  | 3       | 0.000 | 0.000     | 0.333    | 0.400 |
 | Sellar Region   | 8       | 0.000 | 0.154     | 0.941    | 0.667 |
 
-![[fig8_stage1_perclass.png]]
+![替代文本](fig8_stage1_perclass.png)
 
 
 #### 5.5 Implications for Fusion
@@ -211,11 +224,11 @@ We tested two fusion paradigms. Early fusion concatenates all modality features 
 | LightGBM                 | Early  | 0.6422 ±0.0442 | 0.6284       | 0.8233       | 0.8153          | 0.9603 |
 | Random Forest            | Early  | 0.5006 ±0.0488 | 0.4683       | 0.7173       | 0.6818          | 0.9320 |
 
-![[fig10_stage2_comparison.png]]
+![替代文本](fig10_stage2_comparison.png)
 
-![[fig11_stage2_auroc.png]]
+![替代文本](fig11_stage2_auroc.png)
 
-![[fig10_stage2_confusion.png]]
+![替代文本](fig10_stage2_confusion.png)
 
 #### 6.1 Fusion Consistently Outperforms Single-Modality Baselines
 
@@ -230,11 +243,13 @@ The choice of classifier matters just as much as the fusion strategy itself. Ran
 SVM-RBF achieves the best Val Macro-F1 among all early-fusion models (0.7834), with a leakage-free CV score of 0.6832 ±0.0335. Its Val score exceeds its CV mean by about 0.10 points. This is not a sign of instability; cross-validation systematically underestimates performance when training set size matters, and with only 1,983 cases spread across five classes, losing 20% of the data per fold meaningfully reduces minority class coverage. The leakage-free design compounds this effect: each fold must re-learn the TF-IDF vocabulary and image PCA structure from scratch on 80% of the data, which disproportionately penalises a kernel method sensitive to the full feature geometry. Retrained on the complete training set, the RBF kernel finds a better decision boundary than any individual fold could produce.
 
 The class-weighted training ensures the hyperplane is not optimised purely for Glioma, and the RBF kernel's ability to carve out non-linear decision boundaries in high-dimensional space is exactly what a heterogeneous 800-d feature mix requires.
+
 #### 6.3 Neural Networks Overfit Under Limited Training Data
 
 The PyTorch Multi-Branch MLP achieves the highest leakage-free CV Macro-F1 among models with CV scores (0.7505 ±0.0298), yet its Val Macro-F1 drops to 0.7045, a gap of 0.046 points. The training log makes the cause clear: the model reached its best checkpoint at epoch 13 and triggered early stopping at epoch 20 as validation loss continued climbing while training loss fell. The network memorises training patterns faster than it learns to generalise them.
 
 The standard MLP shows the same pattern, if less dramatically (CV 0.7273, Val 0.7092, gap of 0.018). Both architectures have the capacity to model complex cross-modal interactions, and their CV scores confirm they do so effectively. The problem is data volume. With fewer than 60 training examples in two rarest classes, gradient-based optimisation has very little signal to work with, and the network compensates by fitting the majority classes too closely.
+
 #### 6.4 Soft Voting Outperforms Stacking in Late Fusion
 
 Soft Voting (Val Macro-F1 = 0.7851, AUROC = 0.9685) exceeds SVM-RBF on Val Macro-F1 and achieves the highest AUROC of any model. By averaging probability outputs from SVM, XGBoost, LightGBM, and LR, it smooths over individual model errors and handles imbalanced classes more gracefully than any single classifier.
@@ -243,10 +258,9 @@ Stacking underperforms Soft Voting (0.7101 vs 0.7851). The meta-learner, a logis
 
 #### 6.5 PR Curves Reveal What AUROC Conceals
 
-![[fig13_roc_curves.png]]
+![替代文本](fig13_roc_curves.png)
 
-
-![[fig14_pr_curves.png]]
+![替代文本](fig13_roc_curves.png)
 
 AUROC values are uniformly high across all models (>0.92), and the ROC curves in Figure 13 confirm this visually. The curves cluster tightly near the top-left corner, reflecting strong class separability at the probability level. This uniformity is partly because Glioma and Meningioma, which together make up over 80% of the validation set, are easy to rank correctly even for weaker models.
 
