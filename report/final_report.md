@@ -1,3 +1,7 @@
+# STAT 3612 Group Project Final Report
+## Multimodal Presurgical Brain Tumor Classification
+####  Group 7  |  April 2026 |  https://github.com/SunnieShen/STAT3612-Amateur-Neuro-Team
+
 ### 1. Executive Summary
 
 This project develops a statistical machine learning framework for the presurgical classification of five brain tumor subtypes, leveraging a diverse multimodal dataset of 2,838 cases. Confronted with a severe 40:1 class imbalance and ~20% missing modality rates, we implemented a three-stage pipeline integrating MRI-derived image embeddings, radiomics, clinical variables, and radiology report text (TF-IDF). Cross-validated benchmarking demonstrates that text and clinical features consistently outperform image-based signals in isolation, with the Soft Voting ensemble achieving the highest overall validation Macro-F1 of 0.7851 and SVM-RBF achieving the best single early-fusion model score of 0.7834. Stage 3 optimisation confirms that class-weighted training is the most effective imbalance mitigation strategy, and that L1, RF importance, and MI-based feature selection improves cross-validation stability for gradient boosting models. Feature importance analysis pinpoints clinical location variables and TF-IDF tokens as the primary discriminative predictors,confusion analysis further reveals that Brain Metastase Tumour and Glioma present the most significant classification overlap due to similar radiological patterns. These results validate the clinical necessity of fusing unstructured radiology reports with structured demographic and clinical data, providing radiologists with an interpretable, data-driven reference to reduce diagnostic uncertainty in presurgical planning.
@@ -491,4 +495,18 @@ Throughout the optimization process, we observed a clear trade-off between maxim
 However, when evaluated against strict validation standards, we identified a key methodological constraint: the ensemble architecture cannot be fully integrated into a leakage free cross validation framework. For our final deployment under Scheme A, we therefore prioritized a regularized logistic regression model (LR-L2). Although its absolute performance is more conservative (CV mean: 0.7031; validation: 0.7039), the minimal variance across repeated folds provides stronger generalization guarantees and greater reliability for clinical applications.
 
 Ultimately, these findings illustrate a practical reality in clinical AI. While advanced ensembles can maximize performance in controlled or competitive settings, simpler, well regularized models often deliver the consistency needed for real world diagnostic support. By evaluating both the performance ceiling and a rigorously validated baseline, this work offers a balanced perspective on the capabilities and limitations of current multimodal approaches to brain tumor classification.
+
+
+### 13. Reference
+Chicco, D., & Jurman, G. (2020). The advantages of the Matthews correlation coefficient (MCC) over F1 score and accuracy in binary classification evaluation. BMC Genomics, 21(1), 1-13. https://doi.org/10.1186/s12864-019-6413-7
+
+He, K., Zhang, X., Ren, S., & Sun, J. (2016). Deep residual learning for image recognition. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR) (pp. 770–778). IEEE. https://doi.org/10.1109/CVPR.2016.90
+
+Price, M., Ballard, C., Benedetti, J., Neff, C., Cioffi, G., Waite, K. A., Kruchko, C., Barnholtz-Sloan, J. S., & Ostrom, Q. T. (2024). CBTRUS Statistical Report: Primary Brain and Other Central Nervous System Tumors Diagnosed in the United States in 2017–2021. Neuro-Oncology, 26(Suppl 6), vi1–vi85. https://doi.org/10.1093/neuonc/noae145
+
+Salton, G., & Buckley, C. (1988). Term-weighting approaches in automatic text retrieval. Information Processing & Management, 24(5), 513–523. https://doi.org/10.1016/0306-4573(88)90021-0
+
+Soenksen, L. R., Ma, Y., Zeng, C., Arnaout, R., Collins, J. J., & Lehmann, L. W. H. (2022). 
+Integrated multimodal artificial intelligence framework for healthcare applications. 
+npj Digital Medicine, 5, 149. https://doi.org/10.1038/s41746-022-00689-4
 

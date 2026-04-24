@@ -11,10 +11,14 @@
             "id": "fd274e79fe997a9f",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "report/final_report.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "新标签页"
+              "title": "final_report"
             }
           }
         ]
@@ -182,6 +186,17 @@
   },
   "active": "fd274e79fe997a9f",
   "lastOpenFiles": [
+    "submission/Group7_proposal.pdf",
+    "submission/proposal-Amateur-Neuro-Team_副本.pdf",
+    "proposal/proposal-Amateur-Neuro-Team_副本.pdf",
+    "submission/Group7_slide.pdf",
+    "submission/Group7_notebook.ipynb",
+    "submission/Group7_report.pdf",
+    "submission",
+    "未命名文件夹",
+    "report/Group7_report.pdf",
+    "report/final_report.pdf",
+    "report/report.md",
     "zyx-report(draft).md",
     "report/zyx-report(draft).md",
     "report/report_final.md",
@@ -193,16 +208,10 @@
     "report/fig2_class_dist.png",
     "report/eda_flowchart.png",
     "report",
-    "未命名文件夹",
-    "proposal/proposal-Amateur-Neuro-Team.pdf",
     "proposal/1. proposal_draft.md",
-    "proposal/1. proposal_draft.docx",
     "proposal/0. proposal_workflow.md",
-    "proposal",
     "README.md",
     "0. proposal_workflow.md",
-    "0. proposal_workflow.pdf",
-    "kaggle-dataset/README.md",
-    "README.pdf"
+    "kaggle-dataset/README.md"
   ]
 }
