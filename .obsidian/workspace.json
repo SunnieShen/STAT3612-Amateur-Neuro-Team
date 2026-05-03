@@ -11,14 +11,12 @@
             "id": "fd274e79fe997a9f",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "report/final_report.md",
-                "mode": "source",
-                "source": false
+                "file": "STAT3612_project-2026_Updated.pdf"
               },
-              "icon": "lucide-file",
-              "title": "final_report"
+              "icon": "lucide-file-text",
+              "title": "STAT3612_project-2026_Updated"
             }
           }
         ]
@@ -186,6 +184,9 @@
   },
   "active": "fd274e79fe997a9f",
   "lastOpenFiles": [
+    "dataset/kaggle-dataset/README.md",
+    "dataset/README.md",
+    "report/final_report.md",
     "submission/Group7_proposal.pdf",
     "submission/proposal-Amateur-Neuro-Team_副本.pdf",
     "proposal/proposal-Amateur-Neuro-Team_副本.pdf",
@@ -207,7 +208,6 @@
     "report/fig3_modality.png",
     "report/fig2_class_dist.png",
     "report/eda_flowchart.png",
-    "report",
     "proposal/1. proposal_draft.md",
     "proposal/0. proposal_workflow.md",
     "README.md",
